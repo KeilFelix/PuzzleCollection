@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AdventOfCode\Year2022\Day1_CalorieCounting\ElvesCaloryInventory.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2022\Day2_RockPaperScissors\RockPaperScissorsGamesStrategyGuide.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2022\Day3_RucksackReorganization\Rucksacks.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2022\Day4_CampCleanup\CampSectionCleanupAssignments.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2022\Day5_SupplyStacks\MoveInstructions.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2022\Day6_TuningTrouble\DataStream.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2022\Day7_NoSpaceLeftOnDevice\CommandShellInput.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2022\Day9_RopeBridge\RopeHeadMoves.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2022\Day8_TreetopTreeHouse\TreeGrid.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2023\Day1_Trebuchet\AmendedCalibrationDocument.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2023\Day2_CubeConundrum\Games.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AdventOfCode\Year2023\Day4_Scratchcards\ScratchcardInput.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Problem_Template\SomeInput.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PuzzleCollection.Util\PuzzleCollection.Util.csproj" />
+  </ItemGroup>
+
+</Project>
