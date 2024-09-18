@@ -44,10 +44,16 @@
     <None Update="AdventOfCode\Year2023\Day2_CubeConundrum\Games.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="AdventOfCode\Year2023\Day3_GearRatios\EngineSchematic.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="AdventOfCode\Year2023\Day4_Scratchcards\ScratchcardInput.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Problem_Template\SomeInput.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ProjectEuler\0042_words.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
