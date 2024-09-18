@@ -3,7 +3,7 @@
 public class Input
 {
     public static IEnumerable<Game> Games
-        => File.ReadAllLines("AdventOfCode\\Year2023\\Day2_CubeConundrum\\Games.txt")
+        => File.ReadAllLines("AdventOfCode/Year2023/Day2_CubeConundrum/Games.txt")
         .Select(ParseGame);
 
     public static Game ParseGame(string gameLine)

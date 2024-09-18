@@ -6,7 +6,7 @@ public static class Input
 {
     public static IEnumerable<Rucksack> GetRucksacks()
 
-        => File.ReadAllLines("AdventOfCode\\Year2022\\Day3_RucksackReorganization\\Rucksacks.txt")
+        => File.ReadAllLines("AdventOfCode/Year2022/Day3_RucksackReorganization/Rucksacks.txt")
             .Select(GetRucksackFromLine);
 
     private static Rucksack GetRucksackFromLine(string line)

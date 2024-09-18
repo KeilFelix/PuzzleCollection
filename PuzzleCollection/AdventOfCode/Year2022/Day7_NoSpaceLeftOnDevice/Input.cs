@@ -7,7 +7,7 @@ namespace PuzzleCollection.AdventOfCode.Year2022.Day7_NoSpaceLeftOnDevice;
 public static class Input
 {
     public static IEnumerable<IShellCommand> Commands
-        => File.ReadAllLines("AdventOfCode\\Year2022\\Day7_NoSpaceLeftOnDevice\\CommandShellInput.txt")
+        => File.ReadAllLines("AdventOfCode/Year2022/Day7_NoSpaceLeftOnDevice/CommandShellInput.txt")
         .SplitBefore(str => str.StartsWith('$'))
         .Select(commandWithOutput => Parse(commandWithOutput.First(), commandWithOutput.Skip(1)));
 

@@ -8,7 +8,7 @@ public static class Input
         SecondSignAsResult
     }
     public static IEnumerable<RockPaperScissors.Game> GetGames(Interpretation interpretation)
-        => File.ReadAllLines("AdventOfCode\\Year2022\\Day2_RockPaperScissors\\RockPaperScissorsGamesStrategyGuide.txt")
+        => File.ReadAllLines("AdventOfCode/Year2022/Day2_RockPaperScissors/RockPaperScissorsGamesStrategyGuide.txt")
             .Select(line => GetGameFromLine(line, interpretation));
 
     private static RockPaperScissors.Game GetGameFromLine(string line, Interpretation interpretation)

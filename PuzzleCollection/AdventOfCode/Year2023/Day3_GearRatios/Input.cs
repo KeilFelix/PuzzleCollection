@@ -3,7 +3,7 @@
 public class Input
 {
     public static EngineSchematic EngineSchematic
-        => ParseEngineSchematic(File.ReadAllText("AdventOfCode\\Year2023\\Day2_CubeConundrum\\Games.txt"));
+        => ParseEngineSchematic(File.ReadAllText("AdventOfCode/Year2023/Day2_CubeConundrum/Games.txt"));
 
     public static EngineSchematic ParseEngineSchematic(string engineSchematicRaw)
     {

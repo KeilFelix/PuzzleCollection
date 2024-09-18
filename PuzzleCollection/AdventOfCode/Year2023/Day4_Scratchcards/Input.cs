@@ -3,7 +3,7 @@
 public static class Input
 {
     public static IEnumerable<Scratchcard> Scratchcards
-        => File.ReadAllLines("AdventOfCode\\Year2023\\Day4_Scratchcards\\ScratchcardInput.txt")
+        => File.ReadAllLines("AdventOfCode/Year2023/Day4_Scratchcards/ScratchcardInput.txt")
         .Select(ParseCard);
 
 

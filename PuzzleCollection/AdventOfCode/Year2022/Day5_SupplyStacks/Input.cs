@@ -6,7 +6,7 @@ namespace PuzzleCollection.AdventOfCode.Year2022.Day5_SupplyStacks;
 public static class Input
 {
     public static IEnumerable<MoveInstruction> GetMoveInstructions()
-        => File.ReadAllLines("AdventOfCode\\Year2022\\Day5_SupplyStacks\\MoveInstructions.txt")
+        => File.ReadAllLines("AdventOfCode/Year2022/Day5_SupplyStacks/MoveInstructions.txt")
             .Select(GetMoveInstructionFromLine);
 
 

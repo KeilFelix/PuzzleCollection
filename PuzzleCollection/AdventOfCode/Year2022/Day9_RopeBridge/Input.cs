@@ -5,7 +5,7 @@ namespace PuzzleCollection.AdventOfCode.Year2022.Day9_RopeBridge;
 public static class Input
 {
     public static IEnumerable<Move> GetRopeHeadMoves()
-        => File.ReadAllLines("AdventOfCode\\Year2022\\Day9_RopeBridge\\RopeHeadMoves.txt")
+        => File.ReadAllLines("AdventOfCode/Year2022/Day9_RopeBridge/RopeHeadMoves.txt")
             .Select(MoveFromLine);
 
     private static Move MoveFromLine(string line)

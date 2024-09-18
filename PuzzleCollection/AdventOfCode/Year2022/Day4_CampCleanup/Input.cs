@@ -4,7 +4,7 @@ public static class Input
 {
     public static IEnumerable<CampSectionCleanupAssignment> GetCampSectionCleanupAssignments()
 
-        => File.ReadAllLines("AdventOfCode\\Year2022\\Day4_CampCleanup\\CampSectionCleanupAssignments.txt")
+        => File.ReadAllLines("AdventOfCode/Year2022/Day4_CampCleanup/CampSectionCleanupAssignments.txt")
             .Select(GetCampSectionCleanupAssignmentFromLine);
 
     private static CampSectionCleanupAssignment GetCampSectionCleanupAssignmentFromLine(string line)
