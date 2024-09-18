@@ -38,6 +38,6 @@ public class Problem32_PandigitalProducts : IPuzzle
             }
         }
 
-        return $"Die Summe ist {products.DistinctBy(p => p.Value).Sum(p => p.Value)}.";
+        return $"The sum is {products.DistinctBy(p => p.Value).Sum(p => p.Value)}.";
     }
 }

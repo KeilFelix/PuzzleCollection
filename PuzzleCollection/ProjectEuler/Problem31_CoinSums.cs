@@ -1,4 +1,6 @@
-﻿namespace PuzzleCollection.ProjectEuler;
+﻿using PuzzleCollection.AdventOfCode.Year2022.Day8_TreetopTreeHouse;
+
+namespace PuzzleCollection.ProjectEuler;
 
 public class Problem31_CoinSums : IPuzzle
 {
@@ -24,10 +26,8 @@ public class Problem31_CoinSums : IPuzzle
     {
         int targetAmount = 200;
         var coins = (new[] { 1, 2, 5, 10, 20, 50, 100, 200 }).Select(value => new Coin(value));
-
         int ways = WaysToMakeChange(targetAmount, coins);
-        
 
-        return $"Es gibt {ways} Möglichkeiten, {targetAmount} Pence mit den Münzen {string.Join(", ", coins.Select(c => c.value))} zu bilden.";
+        return $"There are {ways} possible ways to create {targetAmount} Pence with the coins {string.Join(", ", coins.Select(c => c.value))}.";
     }
 }

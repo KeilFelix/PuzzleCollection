@@ -37,7 +37,6 @@ public class Problem26_ReciprocalCycles : IPuzzle
                 resultD = d;
             }
         }
-
-        return $"Die längste wiederkehrende Dezimalzahl hat {maxLength} Stellen und tritt bei 1/{resultD} auf.";
+        return $"The longest reciprocal cycle has {maxLength} digits and occurs at 1/{resultD}.";
     }
 }
