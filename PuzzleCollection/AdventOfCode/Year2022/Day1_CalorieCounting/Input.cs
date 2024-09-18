@@ -5,7 +5,7 @@ namespace PuzzleCollection.AdventOfCode.Year2022.Day1_CalorieCounting;
 public static class Input
 {
     public static IEnumerable<Elf> GetElvesCaloryInventory()
-        => File.ReadAllLines("AdventOfCode\\Year2022\\Day1_CalorieCounting\\ElvesCaloryInventory.txt")
+        => File.ReadAllLines("AdventOfCode/Year2022/Day1_CalorieCounting/ElvesCaloryInventory.txt")
             .SplitAfter(string.IsNullOrWhiteSpace)
             .Select((rawChunk, index) => new Elf(index, GetCaloriesFromChunk(rawChunk)));
 
