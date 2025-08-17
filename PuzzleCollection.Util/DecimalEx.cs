@@ -12,9 +12,9 @@ public static class DecimalEx
         }
     }
 
-    public static int FromDigits(IEnumerable<int> digits, int numBase = 10)
+    public static decimal FromDigits(IEnumerable<int> digits, int numBase = 10)
     {
-        int value = 0;
+        decimal value = 0;
         foreach (var digit in digits.Reverse())
         {
             value = value * numBase + digit;

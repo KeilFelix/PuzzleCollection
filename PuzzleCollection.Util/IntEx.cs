@@ -157,4 +157,27 @@ public static class IntEx
 
         return result;
     }
+
+    public static IEnumerable<int> TriangleNumbers()
+    {
+
+        int n = 0;
+        int increment = 0;
+        while (true)
+        {
+            increment++;
+            n += increment;
+            yield return n;
+        }
+    }
+
+    public static IEnumerable<int> MultiplesOf(int basis)
+    {
+        int n = basis;
+        while (true)
+        {
+            yield return n;
+            n+=basis;
+        }
+    }
 }

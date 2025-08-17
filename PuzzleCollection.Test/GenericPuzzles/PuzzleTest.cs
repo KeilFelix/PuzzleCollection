@@ -48,6 +48,8 @@ public class PuzzleTest
         {typeof(ProjectEuler.Problem39_IntegerRightTriangles),  "The perimeter of the right triangle with the most solutions is 840" },
         {typeof(ProjectEuler.Problem40_ChampernownesConstant),  "The product of the Champernowne's Constant digits is 210" },
         {typeof(ProjectEuler.Problem41_PandigitalPrime),  "The largest pandigital prime is 7652413" },
+        {typeof(ProjectEuler.Problem42_CodedTriangleNumbers),  "There are 162 triangle words" },
+        {typeof(ProjectEuler.Problem43_SubStringDivisibility),  "The sum of all is 16695334890" },
     };
 
     [Test]
