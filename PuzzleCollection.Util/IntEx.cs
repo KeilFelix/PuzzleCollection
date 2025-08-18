@@ -25,6 +25,15 @@ public static class IntEx
         }
     }
 
+    public static IEnumerable<int> GetDigits(this long source, int numBase = 10)
+    {
+        while (source > 0)
+        {
+            yield return (int) (source % numBase);
+            source /= numBase;
+        }
+    }
+
     public static int FromDigits(IEnumerable<int> digits, int numBase = 10)
     {
         int value = 0;
@@ -47,30 +56,33 @@ public static class IntEx
         }
     }
 
-    public static SortedSet<int> PrimeCache = new SortedSet<int> { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
-
-    public static IEnumerable<int> Primes()
+    public static SortedSet<long> GetDefaultPrimeCache() => new SortedSet<long> { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
+    public static IEnumerable<long> Primes(SortedSet<long> primeCache = null)
     {
+        if(primeCache == null)
+        {
+            primeCache = GetDefaultPrimeCache();
+        }
 
-        foreach (var prime in PrimeCache)
+        foreach (var prime in primeCache)
         {
             yield return prime;
 
         }
 
-        for (int candidate = PrimeCache.Last() + 2; ; candidate += 2)
+        for (long candidate = primeCache.Last() + 2; ; candidate += 2)
         {
-            var primesToTest = Primes().TakeWhile(prime => prime < Math.Sqrt(candidate));
+            var primesToTest = Primes(primeCache).TakeWhile(prime => prime < Math.Sqrt(candidate));
 
             if(primesToTest.All(prime => candidate % prime != 0))
             {
-                PrimeCache.Add(candidate);
+                primeCache.Add(candidate);
                 yield return candidate;
             }
         }
     }
 
-    public static bool IsPandigital(this int source)
+    public static bool IsPandigital(this long source)
     {
         return source.GetDigits().ToList().IsPandigital();
     }
@@ -195,7 +207,7 @@ public static class IntEx
         }
     }
 
-    public static IEnumerable<int> MultiplesOf(int basis)
+    public static IEnumerable<long> MultiplesOf(int basis)
     {
         int n = basis;
         while (true)
@@ -204,4 +216,8 @@ public static class IntEx
             n+=basis;
         }
     }
+
+    public static IEnumerable<long> NaturalNumbers() => MultiplesOf(1);
+
+    public static IEnumerable<long> Squares() => NaturalNumbers().Select(n => n * n);
 }

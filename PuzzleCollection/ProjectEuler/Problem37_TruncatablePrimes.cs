@@ -6,7 +6,8 @@ public class Problem37_TruncatablePrimes : IPuzzle
 {
     public string GetSolution()
     {
-        var truncatablePrimes = IntEx.Primes()
+        var primeCache = IntEx.GetDefaultPrimeCache();
+        var truncatablePrimes = IntEx.Primes(primeCache)
             .SkipWhile(x => x < 10) // 2, 3, 5, 7 are not considered truncatable
             .Where(IsTruncatablePrime)
             .Take(11)
@@ -16,7 +17,7 @@ public class Problem37_TruncatablePrimes : IPuzzle
 
         return $"The sum of the eleven truncatable primes is {sum}";
 
-        bool IsTruncatablePrime(int candidate)
+        bool IsTruncatablePrime(long candidate)
         {
             var digits = candidate.GetDigits().ToList();
 
@@ -27,8 +28,8 @@ public class Problem37_TruncatablePrimes : IPuzzle
             {
                 rightDigits.Add(digits[i]);
                 leftDigits.Insert(0, digits[digits.Count - 1 - i]);
-                if(!IntEx.PrimeCache.Contains(IntEx.FromDigits(leftDigits)) ||
-                 !IntEx.PrimeCache.Contains(IntEx.FromDigits(rightDigits)))
+                if(!primeCache.Contains(IntEx.FromDigits(leftDigits)) ||
+                 !primeCache.Contains(IntEx.FromDigits(rightDigits)))
                 {
                     return false;
                 }

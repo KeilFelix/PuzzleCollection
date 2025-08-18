@@ -86,9 +86,9 @@ public class Problem43_SubStringDivisibility : IPuzzle
         return $"The sum of all is {substringDivisiblePandigitals.Sum()}";
     }
 
-    public IEnumerable<List<int>> UniqueThreeDigitsFilter(int number)
+    public IEnumerable<List<int>> UniqueThreeDigitsFilter(long number)
     {
-        var digits = IntEx.GetDigits(number).Reverse().ToList();
+        var digits = number.GetDigits().Reverse().ToList();
 
         while (digits.Count < 3)
         {

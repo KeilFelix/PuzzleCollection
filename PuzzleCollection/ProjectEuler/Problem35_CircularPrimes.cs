@@ -16,7 +16,7 @@ public class Problem35_CircularPrimes : IPuzzle
         return $"The are {circularPrimes.Count} below one million";
 
 
-        bool IsCircularPrime(int value)
+        bool IsCircularPrime(long value)
         {
             var digits = value.GetDigits().ToList();
 
