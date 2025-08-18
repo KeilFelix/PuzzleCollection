@@ -158,7 +158,31 @@ public static class IntEx
         return result;
     }
 
-    public static IEnumerable<int> TriangleNumbers()
+    public static IEnumerable<long> HexagonalNumbers()
+    {
+        int n = 1;
+        int increment = 1;
+        while (true)
+        {
+            yield return n;
+            increment += 4;
+            n += increment;
+        }
+    }
+
+    public static IEnumerable<long> PentagonalNumbers()
+    {
+        int n = 1;
+        int increment = 1;
+        while (true)
+        {
+            yield return n;
+            increment += 3;
+            n += increment;
+        }
+    }
+
+    public static IEnumerable<long> TriangleNumbers()
     {
 
         int n = 0;

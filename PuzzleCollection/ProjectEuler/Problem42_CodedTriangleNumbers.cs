@@ -12,7 +12,7 @@ public class Problem42_CodedTriangleNumbers : IPuzzle
         return $"There are {Words.Where(IsTriangleWord).Count()} triangle words";
     }
 
-    public static IEnumerable<int> TriangleNumbersMemoized => IntEx.TriangleNumbers().Memoize();
+    public static IEnumerable<long> TriangleNumbersMemoized => IntEx.TriangleNumbers().Memoize();
     public static bool IsTriangleWord(string word)
     {
         var wordValue = word.Sum(c => c.AlphabeticalPosition());

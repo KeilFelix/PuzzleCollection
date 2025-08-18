@@ -1,3 +1,5 @@
+using static System.Net.Mime.MediaTypeNames;
+
 namespace PuzzleCollection.Test.GenericPuzzles;
 
 [TestFixtureSource(typeof(Puzzles), nameof(Puzzles.All))]
@@ -50,6 +52,8 @@ public class PuzzleTest
         {typeof(ProjectEuler.Problem41_PandigitalPrime),  "The largest pandigital prime is 7652413" },
         {typeof(ProjectEuler.Problem42_CodedTriangleNumbers),  "There are 162 triangle words" },
         {typeof(ProjectEuler.Problem43_SubStringDivisibility),  "The sum of all is 16695334890" },
+        {typeof(ProjectEuler.Problem44_PentagonNumbers),  "The difference is 5482660" },
+        {typeof(ProjectEuler.Problem45_TriangularPentagonalAndHexagonal),  "The next is 1533776805" },
     };
 
     [Test]

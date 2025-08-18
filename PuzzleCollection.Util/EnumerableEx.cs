@@ -102,4 +102,5 @@ public static class EnumerableEx
         var halfLength = sourceMem.Count() / 2;
         return sourceMem.Take(halfLength).SequenceEqual(sourceMem.Reverse().Take(halfLength));
     }
+
 }
