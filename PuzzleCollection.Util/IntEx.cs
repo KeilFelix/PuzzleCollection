@@ -170,6 +170,18 @@ public static class IntEx
         return result;
     }
 
+
+    public static long Pow(this long source, int exponent)
+    {
+        long result = 1;
+        for (int i = 0; i < exponent; i++)
+        {
+            result *= source;
+        }
+
+        return result;
+    }
+
     public static IEnumerable<long> HexagonalNumbers()
     {
         int n = 1;
@@ -220,4 +232,30 @@ public static class IntEx
     public static IEnumerable<long> NaturalNumbers() => MultiplesOf(1);
 
     public static IEnumerable<long> Squares() => NaturalNumbers().Select(n => n * n);
+
+    public static List<long> GetPrimeFactors(long number)
+    {
+        var factors = new List<long>();
+
+        while (number % 2 == 0)
+        {
+            factors.Add(2);
+            number /= 2;
+        }
+
+        for (long i = 3; i * i <= number; i += 2)
+        {
+            while (number % i == 0)
+            {
+                factors.Add(i);
+                number /= i;
+            }
+        }
+
+        if (number > 1)
+            factors.Add(number);
+
+        return factors;
+    }
+
 }

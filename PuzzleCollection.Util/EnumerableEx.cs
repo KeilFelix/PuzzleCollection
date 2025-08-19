@@ -1,4 +1,6 @@
-﻿namespace PuzzleCollection.Util;
+﻿using System.Collections.ObjectModel;
+
+namespace PuzzleCollection.Util;
 
 public static class EnumerableEx
 {
@@ -25,6 +27,31 @@ public static class EnumerableEx
             {
                 yield return (previous, iterator.Current);
                 previous = iterator.Current;
+            }
+        }
+    }
+
+    public static IEnumerable<ReadOnlyCollection<T>> PairWithPrevious<T>(this IEnumerable<T> source, int count)
+    {
+
+        using (var iterator = source.GetEnumerator())
+        {
+            List<T> values = new();
+
+            for (int i = 0; i < count; i++)
+            {
+                if (!iterator.MoveNext())
+                    yield break;
+                values.Add(iterator.Current);
+
+                yield return values.AsReadOnly();
+            }
+
+            while (iterator.MoveNext())
+            {
+                values.RemoveAt(0);
+                values.Add(iterator.Current);
+                yield return values.AsReadOnly();
             }
         }
     }
