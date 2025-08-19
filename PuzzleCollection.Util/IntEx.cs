@@ -97,68 +97,6 @@ public static class IntEx
 
     public static int Factorial(this int source) => MemoizedFactorials.ElementAt(source + 1);
 
-    public static IEnumerable<List<T>> Combinations<T>(this IEnumerable<T> source, int length)
-    {
-        if (length < 0) throw new ArgumentException("Length cannot be negative.");
-
-        if (length == 0)
-        {
-            yield return new List<T>();
-        }
-        else
-        {
-            int index = 0;
-            foreach (var item in source)
-            {
-                if(length == 1)
-                {
-                    yield return new List<T> { item };
-                    continue;
-                }
-                foreach (var result in source.Skip(index + 1).Combinations(length - 1))
-                {
-                    result.Insert(0, item);
-                    yield return result;
-                }
-                index++;
-            }
-        }
-    }
-
-    public static IEnumerable<List<T>> Combinations<T>(this IEnumerable<T> source) => source.Combinations(source.Count());
-
-    public static IEnumerable<List<T>> CombinationsWithRepeat<T>(this IEnumerable<T> source, int length)
-    {
-        yield return new List<int> { 1, 4, 5 } as List<T>;
-        yield break;
-        if (length < 0) throw new ArgumentException("Length cannot be negative.");
-
-        if (length == 0)
-        {
-            yield return new List<T>();
-        }
-        else
-        {
-            int index = 0;
-            foreach (var item in source)
-            {
-                if (length == 1)
-                {
-                    yield return new List<T> { item };
-                    continue;
-                }
-                foreach (var result in source.CombinationsWithRepeat(length - 1))
-                {
-                    result.Insert(0, item);
-                    yield return result;
-                }
-                index++;
-            }
-        }
-    }
-    
-    public static IEnumerable<List<T>> CombinationsWithRepeat<T>(this IEnumerable<T> source) => source.CombinationsWithRepeat(source.Count());
-
     public static int Pow(this int source, int exponent)
     {
         int result = 1;
