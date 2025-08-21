@@ -6,13 +6,13 @@ public class Problem43_SubStringDivisibility : IPuzzle
 {
     public string GetSolution()
     {
-        var multiplesOf2 = IntEx.MultiplesOf(2).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
-        var multiplesOf3 = IntEx.MultiplesOf(3).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
-        var multiplesOf5 = IntEx.MultiplesOf(5).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
-        var multiplesOf7 = IntEx.MultiplesOf(7).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
-        var multiplesOf11 = IntEx.MultiplesOf(11).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
-        var multiplesOf13 = IntEx.MultiplesOf(13).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
-        var multiplesOf17 = IntEx.MultiplesOf(17).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
+        var multiplesOf2 = NumberSequences.MultiplesOf(2).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
+        var multiplesOf3 = NumberSequences.MultiplesOf(3).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
+        var multiplesOf5 = NumberSequences.MultiplesOf(5).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
+        var multiplesOf7 = NumberSequences.MultiplesOf(7).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
+        var multiplesOf11 = NumberSequences.MultiplesOf(11).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
+        var multiplesOf13 = NumberSequences.MultiplesOf(13).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
+        var multiplesOf17 = NumberSequences.MultiplesOf(17).TakeWhile(n => n < 1000).SelectMany(UniqueThreeDigitsFilter).ToList();
         var digits = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         var substringDivisiblePandigitals = new List<decimal>();
@@ -88,7 +88,7 @@ public class Problem43_SubStringDivisibility : IPuzzle
 
     public IEnumerable<List<int>> UniqueThreeDigitsFilter(long number)
     {
-        var digits = number.GetDigits().Reverse().ToList();
+        var digits = number.ToDigits().Reverse().ToList();
 
         while (digits.Count < 3)
         {

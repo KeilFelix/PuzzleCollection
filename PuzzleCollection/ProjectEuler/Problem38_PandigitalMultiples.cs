@@ -19,7 +19,7 @@ public class Problem38_PandigitalMultiples : IPuzzle
             var digits = Enumerable.Empty<int>();
             for (int i = 1;  ; i++)
             {
-                var nextDigits = (value * i).GetDigits().Reverse().Memoize();
+                var nextDigits = (value * i).ToDigits().Reverse().Memoize();
                 if(nextDigits.Count() + digits.Count() > maxDigits)
                 {
                     break;
@@ -28,7 +28,7 @@ public class Problem38_PandigitalMultiples : IPuzzle
             }
             
             digits = digits.Where(d => d != 0).Distinct(); // only 1-9 unique
-            return IntEx.FromDigits(digits.Reverse());
+            return (int)IntEx.FromDigits(digits.Reverse());
         }
     }
 }

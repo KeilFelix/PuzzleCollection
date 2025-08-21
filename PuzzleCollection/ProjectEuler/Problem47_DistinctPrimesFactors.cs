@@ -8,7 +8,7 @@ public class Problem47_DistinctPrimesFactors : IPuzzle
 {
     public string GetSolution()
     {
-        var setsToProve = IntEx.NaturalNumbers()
+        var setsToProve = NumberSequences.NaturalNumbers()
             .PairWithPrevious(4).Skip(40)
             .First(HasDistinctPrimeFactors);
 

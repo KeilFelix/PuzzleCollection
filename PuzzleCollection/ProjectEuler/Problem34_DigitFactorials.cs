@@ -20,7 +20,7 @@ public class Problem34_DigitFactorials : IPuzzle
 
         bool IsDigitFactorial(int value)
         {
-            var digits = value.GetDigits().ToList();
+            var digits = value.ToDigits().ToList();
 
             var factorialSum = digits.Select(x => x.Factorial()).Sum();
             return value == factorialSum;

@@ -8,9 +8,9 @@ public class Problem45_TriangularPentagonalAndHexagonal : IPuzzle
     public string GetSolution()
     {
             
-        var triangleNumbers = IntEx.TriangleNumbers().Skip(285).Memoize();
-        var pentagonalNumbers = IntEx.PentagonalNumbers().Skip(165).Memoize();
-        var hexagonalNumbers = IntEx.HexagonalNumbers().Skip(143).Memoize();
+        var triangleNumbers = NumberSequences.TriangleNumbers().Skip(285).Memoize();
+        var pentagonalNumbers = NumberSequences.PentagonalNumbers().Skip(165).Memoize();
+        var hexagonalNumbers = NumberSequences.HexagonalNumbers().Skip(143).Memoize();
 
 
         var equals = GetEquals(triangleNumbers, pentagonalNumbers, hexagonalNumbers);

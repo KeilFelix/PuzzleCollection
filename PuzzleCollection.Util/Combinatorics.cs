@@ -9,7 +9,7 @@ namespace PuzzleCollection.Util
     public static class Combinatorics
     {
         // -------------------------
-        // Combinations
+        // Combinations (order doesn't matter, no repetition)
         // -------------------------
         public static IEnumerable<List<T>> Combinations<T>(this IEnumerable<T> source, int length)
         {
@@ -32,8 +32,7 @@ namespace PuzzleCollection.Util
                     {
                         foreach (var result in source.Skip(index + 1).Combinations(length - 1))
                         {
-                            result.Insert(0, item);
-                            yield return result;
+                            yield return [item, .. result];
                         }
                     }
                     index++;
@@ -45,7 +44,7 @@ namespace PuzzleCollection.Util
             => source.Combinations(source.Count());
 
         // -------------------------
-        // Combinations with repetition
+        // Combinations with repetition (order doesn't matter, repetition allowed)
         // -------------------------
         public static IEnumerable<List<T>> CombinationsWithRepeat<T>(this IEnumerable<T> source, int length)
         {
@@ -68,8 +67,7 @@ namespace PuzzleCollection.Util
                     {
                         foreach (var result in source.Skip(index).CombinationsWithRepeat(length - 1))
                         {
-                            result.Insert(0, item);
-                            yield return result;
+                            yield return [item, .. result];
                         }
                     }
                     index++;
@@ -86,6 +84,7 @@ namespace PuzzleCollection.Util
         public static IEnumerable<List<T>> Variations<T>(this IEnumerable<T> source, int length)
         {
             if (length < 0) throw new ArgumentException("Length cannot be negative.");
+
             if (length == 0)
             {
                 yield return new List<T>();
@@ -103,8 +102,7 @@ namespace PuzzleCollection.Util
                     {
                         foreach (var result in source.Where((_, i) => i != index).Variations(length - 1))
                         {
-                            result.Insert(0, item);
-                            yield return result;
+                            yield return [item, .. result];
                         }
                     }
                     index++;
@@ -121,6 +119,7 @@ namespace PuzzleCollection.Util
         public static IEnumerable<List<T>> VariationsWithRepeat<T>(this IEnumerable<T> source, int length)
         {
             if (length < 0) throw new ArgumentException("Length cannot be negative.");
+
             if (length == 0)
             {
                 yield return new List<T>();
@@ -137,8 +136,7 @@ namespace PuzzleCollection.Util
                     {
                         foreach (var result in source.VariationsWithRepeat(length - 1))
                         {
-                            result.Insert(0, item);
-                            yield return result;
+                            yield return [item, .. result];
                         }
                     }
                 }
@@ -149,7 +147,7 @@ namespace PuzzleCollection.Util
             => source.VariationsWithRepeat(source.Count());
 
         // -------------------------
-        // Permutations (just full-length variations)
+        // Permutations (alias: full-length variations)
         // -------------------------
         public static IEnumerable<List<T>> Permutations<T>(this IEnumerable<T> source)
             => source.Variations(source.Count());

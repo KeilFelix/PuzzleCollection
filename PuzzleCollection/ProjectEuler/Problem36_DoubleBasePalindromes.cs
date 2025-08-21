@@ -11,7 +11,7 @@ public class Problem36_DoubleBasePalindromes : IPuzzle
             return false;
         }
 
-        return value.GetDigits().IsPalindrome() && value.GetDigits(2).IsPalindrome();
+        return value.ToDigits().IsPalindrome() && value.ToDigits(2).IsPalindrome();
     }
 
     public string GetSolution()

@@ -7,7 +7,7 @@ public class Problem35_CircularPrimes : IPuzzle
 {
     public string GetSolution()
     {
-        var primesBelowOneMillion = IntEx.Primes().TakeWhile(x => x < 1000000).ToImmutableSortedSet();
+        var primesBelowOneMillion = NumberSequences.Primes().TakeWhile(x => x < 1000000).ToImmutableSortedSet();
 
         var circularPrimes = primesBelowOneMillion
             .Where(IsCircularPrime)
@@ -18,7 +18,7 @@ public class Problem35_CircularPrimes : IPuzzle
 
         bool IsCircularPrime(long value)
         {
-            var digits = value.GetDigits().ToList();
+            var digits = value.ToDigits().ToList();
 
             return Enumerable.Range(1, digits.Count)
                 .Select(x => IntEx.FromDigits(digits.Skip(x).Concat(digits.Take(x))))

@@ -10,8 +10,8 @@ public class Problem33_DigitCancellingFractions : IPuzzle
         {
             get
             {
-                var numeratorDigits = Numerator.GetDigits().ToList();
-                var denominatorDigits = Denominator.GetDigits().ToList();
+                var numeratorDigits = Numerator.ToDigits().ToList();
+                var denominatorDigits = Denominator.ToDigits().ToList();
 
                 var commonDigits = numeratorDigits.Intersect(denominatorDigits).ToList();
 
@@ -23,7 +23,7 @@ public class Problem33_DigitCancellingFractions : IPuzzle
                     var newDenominator = new List<int>(denominatorDigits);
                     newDenominator.Remove(commonDigit);
 
-                    yield return new Fraction(IntEx.FromDigits(newNumerator), IntEx.FromDigits(newDenominator));
+                    yield return new Fraction((int)IntEx.FromDigits(newNumerator), (int)IntEx.FromDigits(newDenominator));
                 }
 
             }

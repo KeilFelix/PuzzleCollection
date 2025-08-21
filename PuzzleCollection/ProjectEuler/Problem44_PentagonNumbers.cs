@@ -7,7 +7,7 @@ public class Problem44_PentagonNumbers : IPuzzle
     public string GetSolution()
     {
             
-        var pentagonNumbers = IntEx.PentagonalNumbers().Take(10000).ToList();
+        var pentagonNumbers = NumberSequences.PentagonalNumbers().Take(10000).ToList();
         for (int i = 0; i < pentagonNumbers.Count; i++)
         {
             for (int j = i; j < pentagonNumbers.Count; j++)

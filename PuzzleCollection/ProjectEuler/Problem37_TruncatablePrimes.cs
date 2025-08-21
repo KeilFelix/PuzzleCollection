@@ -6,8 +6,8 @@ public class Problem37_TruncatablePrimes : IPuzzle
 {
     public string GetSolution()
     {
-        var primeCache = IntEx.GetDefaultPrimeCache();
-        var truncatablePrimes = IntEx.Primes(primeCache)
+        var primeCache = NumberSequences.GetDefaultPrimeCache();
+        var truncatablePrimes = NumberSequences.Primes(primeCache)
             .SkipWhile(x => x < 10) // 2, 3, 5, 7 are not considered truncatable
             .Where(IsTruncatablePrime)
             .Take(11)
@@ -19,7 +19,7 @@ public class Problem37_TruncatablePrimes : IPuzzle
 
         bool IsTruncatablePrime(long candidate)
         {
-            var digits = candidate.GetDigits().ToList();
+            var digits = candidate.ToDigits().ToList();
 
             var leftDigits = new List<int>();
             var rightDigits = new List<int>();

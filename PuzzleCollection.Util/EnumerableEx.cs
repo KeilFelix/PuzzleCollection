@@ -130,4 +130,5 @@ public static class EnumerableEx
         return sourceMem.Take(halfLength).SequenceEqual(sourceMem.Reverse().Take(halfLength));
     }
 
+    public static IEnumerable<T> Yield<T>(this T source) { yield return source; }
 }

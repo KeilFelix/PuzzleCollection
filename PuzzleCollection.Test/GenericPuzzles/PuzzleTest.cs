@@ -57,6 +57,8 @@ public class PuzzleTest
         {typeof(ProjectEuler.Problem46_GoldbachsOtherConjecture),  "The first odd composite not in Goldbach Conjecture is 5777" },
         {typeof(ProjectEuler.Problem47_DistinctPrimesFactors),  "The first number of the set is 134043" },
         {typeof(ProjectEuler.Problem48_SelfPowers),  "The digits are 9110846700" },
+        {typeof(ProjectEuler.Problem49_PrimePermutations),  "The sequence is 296962999629" },
+        {typeof(ProjectEuler.Problem50_ConsecutivePrimeSum),  "The prime with the highest consecutive prime sum is 997651" },
     };
 
     [Test]

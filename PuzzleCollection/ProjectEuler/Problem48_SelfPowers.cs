@@ -8,7 +8,7 @@ public class Problem48_SelfPowers : IPuzzle
 {
     public string GetSolution()
     {
-        var modSum = IntEx.NaturalNumbers()
+        var modSum = NumberSequences.NaturalNumbers()
             .Take(1000)
             .Select(i => Enumerable.Repeat(i, (int)i).Aggregate((a, b) => (a*b) % 10000000000))
             .Aggregate((a, b) => (a + b) % 10000000000);

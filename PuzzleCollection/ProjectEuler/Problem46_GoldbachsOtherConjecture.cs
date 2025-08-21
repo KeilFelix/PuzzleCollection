@@ -7,10 +7,10 @@ public class Problem46_GoldbachsOtherConjecture : IPuzzle
 {
     public string GetSolution()
     {
-        IEnumerable<long> Odds() => IntEx.NaturalNumbers().Select(n => n * 2 - 1);
+        IEnumerable<long> Odds() => NumberSequences.NaturalNumbers().Select(n => n * 2 - 1);
         var odds = Odds().Skip(2).GetEnumerator();
         var goldbachSeries = GoldbachConjectureSeries().Where(n => n % 2 == 1).GetEnumerator();
-        var primes = IntEx.Primes().GetEnumerator();
+        var primes = NumberSequences.Primes().GetEnumerator();
 
         odds.MoveNext();
         goldbachSeries.MoveNext();
@@ -41,9 +41,9 @@ public class Problem46_GoldbachsOtherConjecture : IPuzzle
 
     public IEnumerable<long> GoldbachConjectureSeries()
     {
-        IEnumerable<long> GoldbachPartialSeries(long prime) => IntEx.Squares().Select(s => prime + 2 * s);
+        IEnumerable<long> GoldbachPartialSeries(long prime) => NumberSequences.Squares().Select(s => prime + 2 * s);
 
-        var primer = IntEx.Primes().GetEnumerator();
+        var primer = NumberSequences.Primes().GetEnumerator();
         primer.MoveNext();
 
         List<IEnumerator<long>> goldbackPartialEnumerators = new List<IEnumerator<long>>();

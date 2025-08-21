@@ -6,7 +6,7 @@ public class Problem40_ChampernownesConstant : IPuzzle
 {
     public string GetSolution()
     {
-        var champornownesConstant = IntEx.ChampernownesConstantSeries().Memoize();
+        var champornownesConstant = NumberSequences.ChampernownesConstantSeries().Memoize();
         
         var neededDigitIndexes = new List<int> { 1, 10, 100, 1000, 10000, 100000, 1000000 };
 

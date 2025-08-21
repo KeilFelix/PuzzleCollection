@@ -10,7 +10,7 @@ public class Problem32_PandigitalProducts : IPuzzle
         public bool IsPandigital()
         {
             var digits = new HashSet<int>();
-            foreach (var digit in Multiplicand.GetDigits().Concat(Multiplier.GetDigits()).Concat(Value.GetDigits()))
+            foreach (var digit in Multiplicand.ToDigits().Concat(Multiplier.ToDigits()).Concat(Value.ToDigits()))
             {
                 if (digit == 0 || !digits.Add(digit))
                 {
