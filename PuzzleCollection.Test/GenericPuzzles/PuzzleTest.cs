@@ -38,6 +38,8 @@ public class PuzzleTest
         {typeof(AdventOfCode.Year2023.Day2_CubeConundrum.Puzzle2_SumOfThePowersOfTheMinimalCubeSets),  "The sum of the powers of all minimal cube sets is 68638." },
         {typeof(AdventOfCode.Year2023.Day4_Scratchcards.Puzzle1_CalculateTotalScratchcardPoints),  "The total number of points is 28750." },
         {typeof(AdventOfCode.Year2023.Day4_Scratchcards.Puzzle2_CalculateTotalScratchcardsByCopyWinningRule),  "The total number of cards with all copies is 10212704." },
+        {typeof(AdventOfCode.Year2023.Day5_IfYouGiveASeedAFertilizer.Puzzle1_FindLowestLocationOfSeed),  "The lowest location of a seed is 88151870." },
+        {typeof(AdventOfCode.Year2023.Day5_IfYouGiveASeedAFertilizer.Puzzle2_FindLowestLocationOfSeed),  "The lowest location of a seed is 2008785." },
         {typeof(ProjectEuler.Problem26_ReciprocalCycles),  "The longest reciprocal cycle has 982 digits and occurs at 1/983." },
         {typeof(ProjectEuler.Problem31_CoinSums),  "There are 73682 possible ways to create 200 Pence with the coins 1, 2, 5, 10, 20, 50, 100, 200." },
         {typeof(ProjectEuler.Problem32_PandigitalProducts),  "The sum is 45228." },
