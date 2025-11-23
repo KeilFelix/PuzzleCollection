@@ -78,31 +78,37 @@ public readonly record struct Range(long Start, long End)
         {
             return ([a], null, [b]);
         }
+        
         var intersection = new Range(intersectionStart, intersectionEnd);
 
         IEnumerable<Range> aRemainders()
         {
+            // Left remainder: part of 'a' that's before the intersection
             if (a.Start < intersection.Start)
             {
-                yield return a.End > intersection.Start - 1 ? new Range(a.Start, intersection.Start - 1) : a;
+                yield return new Range(a.Start, intersection.Start - 1);
             }
+            // Right remainder: part of 'a' that's after the intersection
             if (a.End > intersection.End)
             {
-                yield return a.Start < intersection.End + 1 ? new Range(intersection.End + 1, a.End) : a;
+                yield return new Range(intersection.End + 1, a.End);
             }
         }
 
         IEnumerable<Range> bRemainders()
         {
+            // Left remainder: part of 'b' that's before the intersection
             if (b.Start < intersection.Start)
             {
-                yield return b.End > intersection.Start - 1 ? new Range(b.Start, intersection.Start - 1) : b;
+                yield return new Range(b.Start, intersection.Start - 1);
             }
+            // Right remainder: part of 'b' that's after the intersection
             if (b.End > intersection.End)
             {
-                yield return b.Start < intersection.End + 1 ? new Range(intersection.End + 1, b.End) : b;
+                yield return new Range(intersection.End + 1, b.End);
             }
         }
+        
         return (aRemainders(), intersection, bRemainders());
     }
 };
