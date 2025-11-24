@@ -1,4 +1,8 @@
-﻿using PuzzleCollection.Util;
+﻿using System.Reactive.Linq;
+using System.Reactive.Subjects;
+using DynamicData;
+using PuzzleCollection.Util;
+
 namespace PuzzleCollection.Util.Grids;
 
 public static class DirectionExtensions
@@ -141,16 +145,16 @@ public readonly struct Coord : IEquatable<Coord>
     public static bool operator !=(Coord left, Coord right) => !left.Equals(right);
 }
 
-public class Grid<TValue>
+public class Grid<TValue> : IDisposable
 {
-    private Dictionary<Coord, Position> _positions { get; }
+    private readonly SourceCache<Position, Coord> _positions = new(p => p.Coord);
+
+    public IObservable<IChangeSet<Position, Coord>> ConnectPositions() => _positions.Connect();
 
     public Grid() : this(Enumerable.Empty<IEnumerable<IEnumerable<TValue>>>()) { }
 
     public Grid(IEnumerable<IEnumerable<IEnumerable<TValue>>> values)
     {
-        _positions = new();
-
         var objectsToAdd =
             values
             .SelectMany((row, y) =>
@@ -168,15 +172,18 @@ public class Grid<TValue>
 
     public Position GetPosition(Coord coord)
     {
-        if (!_positions.TryGetValue(coord, out var position))
-        {
-            position = new(this, coord);
-            _positions.Add(coord, position);
-        }
+        var lookup = _positions.Lookup(coord);
+        if (lookup.HasValue)
+            return lookup.Value;
+
+        var position = new Position(this, coord);
+        _positions.AddOrUpdate(position);
         return position;
     }
 
-    public IEnumerable<Object> AllObjects => _positions.SelectMany(kvp => kvp.Value.Objects);
+    public IEnumerable<Object> AllObjects => _positions.Items.SelectMany(p => p.Objects);
+
+    public void Dispose() => _positions.Dispose();
 
     public class Position
     {
@@ -184,7 +191,12 @@ public class Grid<TValue>
 
         public Coord Coord { get; }
 
-        public List<Object> Objects { get; } = new();
+        private readonly SourceList<Object> _objects = new();
+        public IEnumerable<Object> Objects => _objects.Items;
+        public IObservable<IChangeSet<Object>> ObjectsChanges => _objects.Connect();
+
+        internal void AddObject(Object obj) => _objects.Add(obj);
+        internal void RemoveObject(Object obj) => _objects.Remove(obj);
 
         public Position Move(Move move) => Grid.GetPosition(Coord + move.Vector);
 
@@ -204,8 +216,10 @@ public class Grid<TValue>
 
     public class Object
     {
-        private Position? _position;
+        private readonly BehaviorSubject<Position?> _positionSubject = new(null);
         public TValue Value { get; }
+
+        public IObservable<Position?> PositionObservable => _positionSubject.AsObservable();
 
         public void Move(Move move)
         {
@@ -227,15 +241,21 @@ public class Grid<TValue>
 
         public void MoveTo(Position? position)
         {
-            if (_position == position)
+            if (_positionSubject.Value == position)
                 return;
 
-            _position?.Objects.Remove(this);
-            _position = position;
-            _position?.Objects.Add(this);
+            var previousPosition = _positionSubject.Value;
+            previousPosition?.RemoveObject(this);
+
+            if (position != null)
+            {
+                position.AddObject(this);
+            }
+
+            _positionSubject.OnNext(position);
         }
 
-        public Position? Position => _position;
+        public Position? Position => _positionSubject.Value;
 
         public Object(TValue value)
         {

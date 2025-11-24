@@ -11,7 +11,7 @@ public abstract class PuzzleBase_GetCountOfTailVisitedPositions : IPuzzle
     {
         var ropeHeadMoves = Input.GetRopeHeadMoves();
 
-        var rope = new Rope(new Coord(0,0), RopeLength);
+        using var rope = new Rope(new Coord(0, 0), RopeLength);
 
         foreach (var ropeHeadMove in ropeHeadMoves)
         {
