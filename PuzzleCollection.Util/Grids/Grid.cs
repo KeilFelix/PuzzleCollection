@@ -4,49 +4,134 @@ public static class DirectionExtensions
 {
     public static Move ToMove(this Direction direction, int length = 1) => new Move(direction, length);
 }
+
 public record Move(Direction Direction, int Length)
 {
     public Coord Vector
     {
         get
         {
-            return Direction switch
-            {
-                Direction.Up => new Coord(0, Length),
-                Direction.UpRight => new Coord(Length, Length),
-                Direction.Right => new Coord(Length, 0),
-                Direction.DownRight => new Coord(Length, -Length),
-                Direction.Down => new Coord(0, -Length),
-                Direction.DownLeft => new Coord(-Length, -Length),
-                Direction.Left => new Coord(-Length, 0),
-                Direction.UpLeft => new Coord(-Length, Length),
-                _ => throw new ArgumentException($"Unknown direction: {Direction}", nameof(Direction))
-            };
+            int x = 0, y = 0, z = 0;
+
+            if (Direction.HasFlag(Direction.Right)) x += Length;
+            if (Direction.HasFlag(Direction.Left)) x -= Length;
+
+            if (Direction.HasFlag(Direction.Up)) y += Length;
+            if (Direction.HasFlag(Direction.Down)) y -= Length;
+
+            if (Direction.HasFlag(Direction.Forward)) z += Length;
+            if (Direction.HasFlag(Direction.Backward)) z -= Length;
+
+            bool hasZ = Direction.HasFlag(Direction.Forward) || Direction.HasFlag(Direction.Backward);
+
+            if (hasZ) return new Coord(x, y, z);
+            return new Coord(x, y);
         }
     }
 }
 
-public record Coord(int X, int Y)
+public readonly struct Coord : IEquatable<Coord>
 {
-        public Coord Move(Move move) => this + move.Vector;
+    private readonly int[] _values;
 
-        /// <summary>
-        /// Returns an infinite sequence of coordinates walking in the specified direction.
-        /// Use with TakeWhile or similar to limit the sequence.
-        /// </summary>
-        public IEnumerable<Coord> Walk(Move move)
+    public Coord(params int[] values)
+    {
+        _values = values.ToArray();
+    }
+
+    public int this[int index] => _values != null && index < _values.Length ? _values[index] : 0;
+
+    public int Dimension => _values?.Length ?? 0;
+
+    public int X => this[0];
+    public int Y => this[1];
+    public int Z => this[2];
+
+    public void Deconstruct(out int x, out int y)
+    {
+        x = X;
+        y = Y;
+    }
+
+    public void Deconstruct(out int x, out int y, out int z)
+    {
+        x = X;
+        y = Y;
+        z = Z;
+    }
+
+    public Coord Move(Move move) => this + move.Vector;
+
+    /// <summary>
+    /// Returns an infinite sequence of coordinates walking in the specified direction.
+    /// Use with TakeWhile or similar to limit the sequence.
+    /// </summary>
+    public IEnumerable<Coord> Walk(Move move)
+    {
+        Coord currentCoord = Move(move);
+        while (true)
         {
-            Coord currentCoord = Move(move);
-            while (true)
-            {
-                yield return currentCoord;
-                currentCoord = currentCoord.Move(move);
-            }
+            yield return currentCoord;
+            currentCoord = currentCoord.Move(move);
+        }
+    }
+
+    public static Coord operator +(Coord a, Coord b)
+    {
+        int dim = Math.Max(a.Dimension, b.Dimension);
+        int[] newValues = new int[dim];
+        for (int i = 0; i < dim; i++)
+        {
+            newValues[i] = a[i] + b[i];
+        }
+        return new Coord(newValues);
+    }
+
+    public static Coord operator -(Coord a, Coord b)
+    {
+        int dim = Math.Max(a.Dimension, b.Dimension);
+        int[] newValues = new int[dim];
+        for (int i = 0; i < dim; i++)
+        {
+            newValues[i] = a[i] - b[i];
+        }
+        return new Coord(newValues);
+    }
+
+    public override bool Equals(object? obj) => obj is Coord other && Equals(other);
+    public bool Equals(Coord other)
+    {
+        if (_values == other._values) return true;
+
+        var len = Math.Max(Dimension, other.Dimension);
+
+        for (int i = 0; i < len; i++)
+        {
+            if (this[i] != other[i]) return false;
+        }
+        return true;
+    }
+
+    public override int GetHashCode()
+    {
+        if (_values == null) return 0;
+        HashCode hash = new();
+
+        int maxIndex = Dimension - 1;
+        while (maxIndex >= 0 && this[maxIndex] == 0) maxIndex--;
+
+        for (int i = 0; i <= maxIndex; i++)
+        {
+            hash.Add(this[i]);
         }
 
-    public static Coord operator +(Coord a, Coord b) => new Coord(a.X + b.X, a.Y + b.Y);
-    public static Coord operator -(Coord a, Coord b) => new Coord(a.X - b.X, a.Y - b.Y);
+        return hash.ToHashCode();
+    }
 
+    public override string ToString() => $"({string.Join(", ", _values ?? Array.Empty<int>())})";
+
+    public static bool operator ==(Coord left, Coord right) => left.Equals(right);
+    public static bool operator !=(Coord left, Coord right) => !left.Equals(right);
 }
 
 public class Grid<TValue>
@@ -117,7 +202,7 @@ public class Grid<TValue>
 
         public void Move(Move move)
         {
-            if(Position == null) throw new InvalidOperationException("Object is not placed on a grid");
+            if (Position == null) throw new InvalidOperationException("Object is not placed on a grid");
 
             var newPosition = Position.Move(move);
 
@@ -126,7 +211,7 @@ public class Grid<TValue>
 
         public void Move(Coord coord)
         {
-            if(Position == null) throw new InvalidOperationException("Object is not placed on a grid");
+            if (Position == null) throw new InvalidOperationException("Object is not placed on a grid");
 
             var newPosition = Position.Move(coord);
 
@@ -144,14 +229,11 @@ public class Grid<TValue>
             _position?.Objects.Add(this);
         }
 
+        public Position? Position => _position;
+
         public Object(TValue value)
         {
             Value = value;
         }
-        public Position? Position
-        {
-            get => _position;
-        }
-
     }
 }

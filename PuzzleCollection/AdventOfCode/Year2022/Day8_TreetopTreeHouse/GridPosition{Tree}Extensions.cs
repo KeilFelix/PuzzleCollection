@@ -11,7 +11,7 @@ public static class GridPositionTreeExtensions
         => position.WalkValues(direction.ToMove()).All(neighbor => neighbor.Objects.Single().Value.Height < position.Objects.Single().Value.Height);
 
     public static bool IsVisibleFromAny(this Grid<Tree>.Position position)
-        => Directions.Orthogonal
+        => Directions.All2D.Where(d => !d.IsDiagonal()) // Only 2D orthogonal for Day 8
             .Any(position.IsVisibleFrom);
 
     public static IEnumerable<Grid<Tree>.Position> VisibleNeighbors(this Grid<Tree>.Position position,
@@ -29,7 +29,22 @@ public static class GridPositionTreeExtensions
         => position.VisibleNeighbors(direction).Count();
 
     public static int GetScenicScore(this Grid<Tree>.Position position)
-        => Directions.Orthogonal
+        => Directions.All2D.Where(d => !d.IsDiagonal()) // Only 2D orthogonal for Day 8
             .Select(position.GetViewingDistance)
             .Product();
+}
+
+public static class DirectionHelperExtensions
+{
+    public static bool IsDiagonal(this Direction direction)
+    {
+        int count = 0;
+        if (direction.HasFlag(Direction.Left)) count++;
+        if (direction.HasFlag(Direction.Right)) count++;
+        if (direction.HasFlag(Direction.Up)) count++;
+        if (direction.HasFlag(Direction.Down)) count++;
+        if (direction.HasFlag(Direction.Forward)) count++;
+        if (direction.HasFlag(Direction.Backward)) count++;
+        return count > 1;
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using PuzzleCollection.Util;
+using PuzzleCollection.Util.Grids;
 
 namespace PuzzleCollection.CodinGame.ShadowOfTheKnight.Ep1;
 
@@ -42,26 +43,18 @@ public record Position(int X, int Y)
     }
 }
 
-[Flags]
-public enum Direction
-{
-    Up = 1,
-    Right = 2,
-    Down = 4,
-    Left = 8
-}
-
 public static class DirectionEx
 {
     public static bool IsSameAxis(this Direction source, Direction direction)
     {
         if (source == direction) return true;
-        if(source == Direction.Left && direction == Direction.Right) return true;
-        if(source == Direction.Down && direction == Direction.Up) return true;
+        if (source == Direction.Left && direction == Direction.Right) return true;
+        if (source == Direction.Down && direction == Direction.Up) return true;
         if (source == Direction.Right && direction == Direction.Left) return true;
         if (source == Direction.Up && direction == Direction.Down) return true;
         return false;
     }
+
     public static Direction From(string rawDirection)
     {
         switch (rawDirection)
@@ -97,6 +90,9 @@ public class HeatSignatureDevice
         _getNextDirection = getNextDirection;
     }
 
+    // GetSetFlags needs to be available on the global enum. 
+    // It is likely an extension method in EnumEx.cs or similar.
+    // We should check if it works for the new enum.
     public IEnumerable<Direction> GetNextDirections() => _getNextDirection().GetSetFlags();
 }
 
@@ -137,14 +133,14 @@ public class ShadowOfTheKnightBombSearcher
             directionsWithNextDistancesToBomb = nextDirectionsToBomb
                 .Select(d => (Direction: d,
                     Distance: (directionsWithNextDistancesToBomb.Single(dwd => dwd.Direction.IsSameAxis(d))
-                        .Distance +1)/2)).ToList();
+                        .Distance + 1) / 2)).ToList();
         }
     }
 }
 
 class Program
 {
-    
+
     static void Main(string[] args)
     {
         //Setup I/O connection
@@ -165,8 +161,8 @@ class Program
         var shadowOfTheKnightBombSearcher = new ShadowOfTheKnightBombSearcher(
             building,
             startPosition,
-            heatSignatureDevice, 
-            maxNumberOfTurnsInput, 
+            heatSignatureDevice,
+            maxNumberOfTurnsInput,
             SendNextPosition);
 
 
