@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Launch (Console App)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/PuzzleCollection.ExperimentingConsole/bin/Debug/net9.0/PuzzleCollection.ExperimentingConsole.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/PuzzleCollection.ExperimentingConsole",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": ".NET Attach",
+      "type": "coreclr",
+      "request": "attach"
+    },
+    {
+      "name": ".NET Launch (Tests)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "dotnet",
+      "args": [
+        "exec",
+        "${workspaceFolder}/PuzzleCollection.Test/bin/Debug/net9.0/PuzzleCollection.Test.dll"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    }
+  ]
+}
