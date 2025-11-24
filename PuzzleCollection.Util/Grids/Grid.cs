@@ -10,44 +10,39 @@ public record Move(Direction Direction, int Length)
     {
         get
         {
-            switch (Direction)
+            return Direction switch
             {
-                case Direction.Up:
-                    return new Coord(0, 0 + Length);
-                case Direction.UpRight:
-                    return new Coord(0 + Length, 0 + Length);
-                case Direction.Right:
-                    return new Coord(0 + Length, 0);
-                case Direction.DownRight:
-                    return new Coord(0 + Length, 0 - Length);
-                case Direction.Down:
-                    return new Coord(0, 0 - Length);
-                case Direction.DownLeft:
-                    return new Coord(0 - Length, 0 - Length);
-                case Direction.Left:
-                    return new Coord(0 - Length, 0);
-                case Direction.UpLeft:
-                    return new Coord(0 - Length, 0 + Length);
-                default:
-                    throw new ArgumentException(nameof(Direction));
-            }
+                Direction.Up => new Coord(0, Length),
+                Direction.UpRight => new Coord(Length, Length),
+                Direction.Right => new Coord(Length, 0),
+                Direction.DownRight => new Coord(Length, -Length),
+                Direction.Down => new Coord(0, -Length),
+                Direction.DownLeft => new Coord(-Length, -Length),
+                Direction.Left => new Coord(-Length, 0),
+                Direction.UpLeft => new Coord(-Length, Length),
+                _ => throw new ArgumentException($"Unknown direction: {Direction}", nameof(Direction))
+            };
         }
     }
 }
 
 public record Coord(int X, int Y)
 {
-    public Coord Move(Move move) => this + move.Vector;
+        public Coord Move(Move move) => this + move.Vector;
 
-    public IEnumerable<Coord> Walk(Move move)
-    {
-        Coord currentCoord = Move(move);
-        while (true)
+        /// <summary>
+        /// Returns an infinite sequence of coordinates walking in the specified direction.
+        /// Use with TakeWhile or similar to limit the sequence.
+        /// </summary>
+        public IEnumerable<Coord> Walk(Move move)
         {
-            yield return currentCoord;
-            currentCoord = currentCoord.Move(move);
+            Coord currentCoord = Move(move);
+            while (true)
+            {
+                yield return currentCoord;
+                currentCoord = currentCoord.Move(move);
+            }
         }
-    }
 
     public static Coord operator +(Coord a, Coord b) => new Coord(a.X + b.X, a.Y + b.Y);
     public static Coord operator -(Coord a, Coord b) => new Coord(a.X - b.X, a.Y - b.Y);
@@ -72,7 +67,10 @@ public class Grid<TValue>
         foreach ((var coord, var coordValues) in objectsToAdd)
         {
             var position = GetPosition(coord);
-            position.Objects.AddRange(coordValues.Select(val => new Object(val, position)));
+            foreach (var val in coordValues)
+            {
+                new Object(val).MoveTo(position);
+            }
         }
     }
 
@@ -85,8 +83,6 @@ public class Grid<TValue>
         }
         return position;
     }
-
-   
 
     public IEnumerable<Object> AllObjects => _positions.SelectMany(kvp => kvp.Value.Objects);
 
@@ -139,15 +135,17 @@ public class Grid<TValue>
 
         public void MoveTo(Position? position)
         {
-            Position?.Objects.Remove(this);
+            // Avoid unnecessary remove/add if already at the target position
+            if (_position == position)
+                return;
+
+            _position?.Objects.Remove(this);
             _position = position;
-            Position?.Objects.Add(this);
+            _position?.Objects.Add(this);
         }
 
-        public Object(TValue value, Position? position = null)
+        public Object(TValue value)
         {
-            
-            _position = position;
             Value = value;
         }
         public Position? Position
