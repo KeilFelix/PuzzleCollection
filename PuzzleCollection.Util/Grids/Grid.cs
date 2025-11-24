@@ -16,8 +16,9 @@ public record Move(Direction Direction, int Length)
             int axisCount = highestBit < 0 ? 2 : (highestBit / 2) + 1;
             axisCount = Math.Max(2, Math.Min(axisCount, Directions.Dimensions.Length));
 
-            int[] values = new int[axisCount];
+            long[] values = new long[axisCount];
             ulong bits = Convert.ToUInt64(Direction);
+            long length = Length;
 
             for (int axis = 0; axis < axisCount; axis++)
             {
@@ -25,10 +26,10 @@ public record Move(Direction Direction, int Length)
                 int positiveBit = negativeBit + 1;
 
                 if (((bits >> negativeBit) & 1UL) == 1UL)
-                    values[axis] -= Length;
+                    values[axis] -= length;
 
                 if (((bits >> positiveBit) & 1UL) == 1UL)
-                    values[axis] += Length;
+                    values[axis] += length;
             }
 
             return new Coord(values);
@@ -38,28 +39,28 @@ public record Move(Direction Direction, int Length)
 
 public readonly struct Coord : IEquatable<Coord>
 {
-    private readonly int[] _values;
+    private readonly long[] _values;
 
-    public Coord(params int[] values)
+    public Coord(params long[] values)
     {
         _values = values.ToArray();
     }
 
-    public int this[int index] => _values != null && index < _values.Length ? _values[index] : 0;
+    public long this[int index] => _values != null && index < _values.Length ? _values[index] : 0;
 
     public int Dimension => _values?.Length ?? 0;
 
-    public int X => this[0];
-    public int Y => this[1];
-    public int Z => this[2];
+    public long X => this[0];
+    public long Y => this[1];
+    public long Z => this[2];
 
-    public void Deconstruct(out int x, out int y)
+    public void Deconstruct(out long x, out long y)
     {
         x = X;
         y = Y;
     }
 
-    public void Deconstruct(out int x, out int y, out int z)
+    public void Deconstruct(out long x, out long y, out long z)
     {
         x = X;
         y = Y;
@@ -85,7 +86,7 @@ public readonly struct Coord : IEquatable<Coord>
     public static Coord operator +(Coord a, Coord b)
     {
         int dim = Math.Max(a.Dimension, b.Dimension);
-        int[] newValues = new int[dim];
+        long[] newValues = new long[dim];
         for (int i = 0; i < dim; i++)
         {
             newValues[i] = a[i] + b[i];
@@ -96,7 +97,7 @@ public readonly struct Coord : IEquatable<Coord>
     public static Coord operator -(Coord a, Coord b)
     {
         int dim = Math.Max(a.Dimension, b.Dimension);
-        int[] newValues = new int[dim];
+        long[] newValues = new long[dim];
         for (int i = 0; i < dim; i++)
         {
             newValues[i] = a[i] - b[i];
@@ -134,7 +135,7 @@ public readonly struct Coord : IEquatable<Coord>
         return hash.ToHashCode();
     }
 
-    public override string ToString() => $"({string.Join(", ", _values ?? Array.Empty<int>())})";
+    public override string ToString() => $"({string.Join(", ", _values ?? Array.Empty<long>())})";
 
     public static bool operator ==(Coord left, Coord right) => left.Equals(right);
     public static bool operator !=(Coord left, Coord right) => !left.Equals(right);
