@@ -1,4 +1,6 @@
-﻿namespace PuzzleCollection.Util.Grids;
+﻿using System.Linq;
+
+namespace PuzzleCollection.Util.Grids;
 
 [Flags]
 public enum Direction
@@ -15,77 +17,82 @@ public enum Direction
 
     // Axis Z
     Backward = 1 << 4,
-    Forward = 1 << 5
+    Forward = 1 << 5,
+
+    // Axis 4 (W)
+    Ana = 1 << 6,
+    Kata = 1 << 7,
+
+    // Axis 5 (V)
+    VPos = 1 << 8,
+    VNeg = 1 << 9,
+
+    // Axis 6 (U)
+    UPos = 1 << 10,
+    UNeg = 1 << 11
 }
 
 public static class Directions
 {
-    // Orthogonal: Single axis movement
-    public static IEnumerable<Direction> Orthogonal => new[]
-    {
-        Direction.Up, Direction.Down,
-        Direction.Left, Direction.Right,
-        Direction.Forward, Direction.Backward
-    };
+    public static Direction[] X => [Direction.Left, Direction.Right];
+    public static Direction[] Y => [Direction.Down, Direction.Up];
+    public static Direction[] Z => [Direction.Backward, Direction.Forward];
+    public static Direction[] W => [Direction.Kata, Direction.Ana];
+    public static Direction[] V => [Direction.VNeg, Direction.VPos];
+    public static Direction[] U => [Direction.UNeg, Direction.UPos];
+
+    public static Direction[][] Dimensions => [X, Y, Z, W, V, U];
+
+    public static IEnumerable<Direction> Orthogonal(int dimensions = 2)
+        => Dimensions.Take(dimensions).SelectMany(axis => axis);
 
     // Diagonal: Movement on exactly 2 axes
-    public static IEnumerable<Direction> Diagonal
+    public static IEnumerable<Direction> Diagonal(int dimensions = 2)
     {
-        get
+        var axes = Dimensions.Take(dimensions).ToList();
+
+        for (int i = 0; i < axes.Count; i++)
         {
-            var x = new[] { Direction.Left, Direction.Right };
-            var y = new[] { Direction.Up, Direction.Down };
-            var z = new[] { Direction.Forward, Direction.Backward };
-
-            foreach (var dX in x)
-                foreach (var dY in y)
-                    yield return dX | dY;
-
-            foreach (var dX in x)
-                foreach (var dZ in z)
-                    yield return dX | dZ;
-
-            foreach (var dY in y)
-                foreach (var dZ in z)
-                    yield return dY | dZ;
-        }
-    }
-
-    // All 2D (X/Y plane only) for backward compatibility logic
-    public static IEnumerable<Direction> All2D
-    {
-        get
-        {
-            var x = new[] { Direction.Left, Direction.Right, Direction.None };
-            var y = new[] { Direction.Up, Direction.Down, Direction.None };
-
-            foreach (var dX in x)
-                foreach (var dY in y)
+            for (int j = i + 1; j < axes.Count; j++)
+            {
+                foreach (var d1 in axes[i])
                 {
-                    if (dX == Direction.None && dY == Direction.None) continue;
-                    if (dX != Direction.None && dY != Direction.None) yield return dX | dY; // Diagonals
-                    else yield return dX | dY; // Orthogonals
+                    foreach (var d2 in axes[j])
+                    {
+                        yield return d1 | d2;
+                    }
                 }
+            }
         }
     }
 
-    // All valid directions (Orthogonal + Diagonal + 3D diagonals)
-    // Note: This includes corner cases like Forward | Right | Up
-    public static IEnumerable<Direction> All
+    public static IEnumerable<Direction> All(int dimensions = 2)
     {
-        get
-        {
-            var x = new[] { Direction.Left, Direction.Right, Direction.None };
-            var y = new[] { Direction.Up, Direction.Down, Direction.None };
-            var z = new[] { Direction.Forward, Direction.Backward, Direction.None };
+        var activeAxes = Dimensions.Take(dimensions).ToList();
 
-            foreach (var dX in x)
-                foreach (var dY in y)
-                    foreach (var dZ in z)
-                    {
-                        var d = dX | dY | dZ;
-                        if (d != Direction.None) yield return d;
-                    }
+        return GetAllCombinations(activeAxes, 0, Direction.None)
+            .Where(d => d != Direction.None);
+    }
+
+    private static IEnumerable<Direction> GetAllCombinations(List<Direction[]> axes, int currentIndex, Direction currentDirection)
+    {
+        if (currentIndex >= axes.Count)
+        {
+            yield return currentDirection;
+            yield break;
+        }
+
+        foreach (var result in GetAllCombinations(axes, currentIndex + 1, currentDirection))
+        {
+            yield return result;
+        }
+
+        foreach (var dir in axes[currentIndex])
+        {
+            foreach (var result in GetAllCombinations(axes, currentIndex + 1, currentDirection | dir))
+            {
+                yield return result;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace PuzzleCollection.Util.Grids;
+﻿using PuzzleCollection.Util;
+namespace PuzzleCollection.Util.Grids;
 
 public static class DirectionExtensions
 {
@@ -11,21 +12,26 @@ public record Move(Direction Direction, int Length)
     {
         get
         {
-            int x = 0, y = 0, z = 0;
+            int highestBit = EnumEx.HighestSetBit(Direction);
+            int axisCount = highestBit < 0 ? 2 : (highestBit / 2) + 1;
+            axisCount = Math.Max(2, Math.Min(axisCount, Directions.Dimensions.Length));
 
-            if (Direction.HasFlag(Direction.Right)) x += Length;
-            if (Direction.HasFlag(Direction.Left)) x -= Length;
+            int[] values = new int[axisCount];
+            ulong bits = Convert.ToUInt64(Direction);
 
-            if (Direction.HasFlag(Direction.Up)) y += Length;
-            if (Direction.HasFlag(Direction.Down)) y -= Length;
+            for (int axis = 0; axis < axisCount; axis++)
+            {
+                int negativeBit = axis * 2;
+                int positiveBit = negativeBit + 1;
 
-            if (Direction.HasFlag(Direction.Forward)) z += Length;
-            if (Direction.HasFlag(Direction.Backward)) z -= Length;
+                if (((bits >> negativeBit) & 1UL) == 1UL)
+                    values[axis] -= Length;
 
-            bool hasZ = Direction.HasFlag(Direction.Forward) || Direction.HasFlag(Direction.Backward);
+                if (((bits >> positiveBit) & 1UL) == 1UL)
+                    values[axis] += Length;
+            }
 
-            if (hasZ) return new Coord(x, y, z);
-            return new Coord(x, y);
+            return new Coord(values);
         }
     }
 }
@@ -220,7 +226,6 @@ public class Grid<TValue>
 
         public void MoveTo(Position? position)
         {
-            // Avoid unnecessary remove/add if already at the target position
             if (_position == position)
                 return;
 

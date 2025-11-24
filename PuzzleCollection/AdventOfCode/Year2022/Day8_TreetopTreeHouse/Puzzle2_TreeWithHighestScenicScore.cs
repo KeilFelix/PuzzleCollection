@@ -25,7 +25,7 @@ public class Puzzle2_TreeWithHighestScenicScore : IPuzzle
         Console.WriteLine($"Positions Height:{position.Objects.Single().Value.Height}");
         Console.WriteLine($"Positions Scenic View Score:{position.GetScenicScore()}");
 
-        foreach (var direction in Directions.Orthogonal)
+        foreach (var direction in Directions.Orthogonal(2))
         {
             Console.WriteLine();
             Console.WriteLine($"Direction {Enum.GetName(direction)}");
