@@ -34,6 +34,8 @@ public class PuzzleTest
         {typeof(AdventOfCode.Year2022.Day9_RopeBridge.Puzzle2_GetCountOfTailVisitedPositions),  "The number of places that the tail visited is 2458." },
         {typeof(AdventOfCode.Year2022.Day10_CathodeRayTube.Puzzle1_SumOfFirstSixSignalStrengths),  "Sum of the six signal strengths: 14420" },
         {typeof(AdventOfCode.Year2022.Day10_CathodeRayTube.Puzzle2_CrtDrawing), "###...##..#....###..###..####..##..#..#.\r\n#..#.#..#.#....#..#.#..#....#.#..#.#..#.\r\n#..#.#....#....#..#.###....#..#..#.#..#.\r\n###..#.##.#....###..#..#..#...####.#..#.\r\n#.#..#..#.#....#.#..#..#.#....#..#.#..#.\r\n#..#..###.####.#..#.###..####.#..#..##..\r\n" },
+        {typeof(AdventOfCode.Year2022.Day11_MonkeyInTheMiddle.Puzzle1_CalculateMonkeyBusiness), "The monkey business is 58786." },
+        {typeof(AdventOfCode.Year2022.Day11_MonkeyInTheMiddle.Puzzle2_CalculateMonkeyBusiness), "The monkey business is 14952185856." },
         {typeof(AdventOfCode.Year2023.Day1_Trebuchet.Puzzle1_ParseCalibrationValueFromFirstAndLastDigit),  "The sum of the calibration values is 55447." },
         {typeof(AdventOfCode.Year2023.Day1_Trebuchet.Puzzle2_ParseCalibrationValueFromFirstAndLastDigitWithWordNumbers),  "The sum of the calibration values is 54706." },
         {typeof(AdventOfCode.Year2023.Day2_CubeConundrum.Puzzle1_SumOfPossibleGameIds),  "The sum of all possible game ids is 2776." },
