@@ -29,7 +29,7 @@ namespace PuzzleCollection.AdventOfCode.Year2022.Day10_CathodeRayTube
                     sumOfFirstSixSignalStrengths = signalStrengths.Sum();
                 });
 
-            instructions.ForEach(instruction => processor.Execute(instruction));
+            instructions.ForEach(instruction => processor.Execute(instruction).ToList());
             processingCompleted.OnNext(new Unit());
 
             processorSubscription.Dispose();

@@ -33,6 +33,7 @@ public class PuzzleTest
         {typeof(AdventOfCode.Year2022.Day9_RopeBridge.Puzzle1_GetCountOfTailVisitedPositions),  "The number of places that the tail visited is 6271." },
         {typeof(AdventOfCode.Year2022.Day9_RopeBridge.Puzzle2_GetCountOfTailVisitedPositions),  "The number of places that the tail visited is 2458." },
         {typeof(AdventOfCode.Year2022.Day10_CathodeRayTube.Puzzle1_SumOfFirstSixSignalStrengths),  "Sum of the six signal strengths: 14420" },
+        {typeof(AdventOfCode.Year2022.Day10_CathodeRayTube.Puzzle2_CrtDrawing), "###...##..#....###..###..####..##..#..#.\r\n#..#.#..#.#....#..#.#..#....#.#..#.#..#.\r\n#..#.#....#....#..#.###....#..#..#.#..#.\r\n###..#.##.#....###..#..#..#...####.#..#.\r\n#.#..#..#.#....#.#..#..#.#....#..#.#..#.\r\n#..#..###.####.#..#.###..####.#..#..##..\r\n" },
         {typeof(AdventOfCode.Year2023.Day1_Trebuchet.Puzzle1_ParseCalibrationValueFromFirstAndLastDigit),  "The sum of the calibration values is 55447." },
         {typeof(AdventOfCode.Year2023.Day1_Trebuchet.Puzzle2_ParseCalibrationValueFromFirstAndLastDigitWithWordNumbers),  "The sum of the calibration values is 54706." },
         {typeof(AdventOfCode.Year2023.Day2_CubeConundrum.Puzzle1_SumOfPossibleGameIds),  "The sum of all possible game ids is 2776." },
@@ -62,6 +63,7 @@ public class PuzzleTest
         {typeof(ProjectEuler.Problem48_SelfPowers),  "The digits are 9110846700" },
         {typeof(ProjectEuler.Problem49_PrimePermutations),  "The sequence is 296962999629" },
         {typeof(ProjectEuler.Problem50_ConsecutivePrimeSum),  "The prime with the highest consecutive prime sum is 997651" },
+        {typeof(ProjectEuler.Problem51_PrimeDigitReplacements),  "The smallest prime is 55" },
     };
 
     [Test]
