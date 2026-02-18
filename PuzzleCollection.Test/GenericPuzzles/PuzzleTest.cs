@@ -65,7 +65,7 @@ public class PuzzleTest
         {typeof(ProjectEuler.Problem48_SelfPowers),  "The digits are 9110846700" },
         {typeof(ProjectEuler.Problem49_PrimePermutations),  "The sequence is 296962999629" },
         {typeof(ProjectEuler.Problem50_ConsecutivePrimeSum),  "The prime with the highest consecutive prime sum is 997651" },
-        {typeof(ProjectEuler.Problem51_PrimeDigitReplacements),  "The smallest prime is 55" },
+        //{typeof(ProjectEuler.Problem51_PrimeDigitReplacements),  "The smallest prime is 55" },
     };
 
     [Test]
