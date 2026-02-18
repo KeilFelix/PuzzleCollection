@@ -6,14 +6,15 @@ namespace PuzzleCollection.AdventOfCode.Year2022.Day11_MonkeyInTheMiddle;
 
 public static class Input
 {
-    private static Dictionary<int, Monkey> _monkeys { get; } = new();
-
     public static IEnumerable<Monkey> GetMonkeys(Func<BigInteger, BigInteger>? worryLevelAdaption)
-        => File.ReadAllText("AdventOfCode/Year2022/Day11_MonkeyInTheMiddle/Monkeys.txt")
-            .Split(["\r\n\r\n"], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .Select(section => GetMonkey(section, worryLevelAdaption)).ToList();
+    {
+        var monkeyLookup = new Dictionary<int, Monkey>();
+        return File.ReadAllText("AdventOfCode/Year2022/Day11_MonkeyInTheMiddle/Monkeys.txt")
+                .Split(["\r\n\r\n"], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Select(section => GetMonkey(section, worryLevelAdaption, monkeyLookup)).ToList();
+    }
 
-    private static Monkey GetMonkey(string monkeySection, Func<BigInteger, BigInteger>? worryLevelAdaption)
+    private static Monkey GetMonkey(string monkeySection, Func<BigInteger, BigInteger>? worryLevelAdaption, Dictionary<int, Monkey> monkeyLookup)
     {
         var monkeyLines = monkeySection.Split("\r\n", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
@@ -31,7 +32,8 @@ public static class Input
         var testDivisor = int.Parse(monkeyLines[3].Split("Test: divisible by ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0]);
         var positiveTestMonkeyId = int.Parse(monkeyLines[4].Split("If true: throw to monkey ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0]);
         var negativeTestMonkeyId = int.Parse(monkeyLines[5].Split("If false: throw to monkey ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0]);
-        var monkey = new Monkey(() => _monkeys[positiveTestMonkeyId], () => _monkeys[negativeTestMonkeyId])
+
+        var monkey = new Monkey(() => monkeyLookup[positiveTestMonkeyId], () => monkeyLookup[negativeTestMonkeyId])
         {
             Id = monkeyId,
             Items = startingItems,
@@ -43,7 +45,7 @@ public static class Input
         BigInteger divisor = 1;
         divisor = divisor * 3;
 
-        _monkeys.Add(monkeyId, monkey);
+        monkeyLookup.Add(monkeyId, monkey);
         return monkey;
     }
 
