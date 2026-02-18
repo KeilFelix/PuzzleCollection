@@ -8,148 +8,151 @@ namespace PuzzleCollection.Util
 {
     public static class Combinatorics
     {
-        // -------------------------
-        // Combinations (order doesn't matter, no repetition)
-        // -------------------------
-        public static IEnumerable<List<T>> Combinations<T>(this IEnumerable<T> source, int length)
+        extension<T>(IEnumerable<T> source)
         {
-            if (length < 0) throw new ArgumentException("Length cannot be negative.");
+            // -------------------------
+            // Combinations (order doesn't matter, no repetition)
+            // -------------------------
+            public IEnumerable<List<T>> Combinations(int length)
+            {
+                if (length < 0) throw new ArgumentException("Length cannot be negative.");
 
-            if (length == 0)
-            {
-                yield return new List<T>();
-            }
-            else
-            {
-                int index = 0;
-                foreach (var item in source)
+                if (length == 0)
                 {
-                    if (length == 1)
-                    {
-                        yield return new List<T> { item };
-                    }
-                    else
-                    {
-                        foreach (var result in source.Skip(index + 1).Combinations(length - 1))
-                        {
-                            yield return [item, .. result];
-                        }
-                    }
-                    index++;
+                    yield return new List<T>();
                 }
-            }
-        }
-
-        public static IEnumerable<List<T>> Combinations<T>(this IEnumerable<T> source)
-            => source.Combinations(source.Count());
-
-        // -------------------------
-        // Combinations with repetition (order doesn't matter, repetition allowed)
-        // -------------------------
-        public static IEnumerable<List<T>> CombinationsWithRepeat<T>(this IEnumerable<T> source, int length)
-        {
-            if (length < 0) throw new ArgumentException("Length cannot be negative.");
-
-            if (length == 0)
-            {
-                yield return new List<T>();
-            }
-            else
-            {
-                int index = 0;
-                foreach (var item in source)
+                else
                 {
-                    if (length == 1)
+                    int index = 0;
+                    foreach (var item in source)
                     {
-                        yield return new List<T> { item };
-                    }
-                    else
-                    {
-                        foreach (var result in source.Skip(index).CombinationsWithRepeat(length - 1))
+                        if (length == 1)
                         {
-                            yield return [item, .. result];
+                            yield return new List<T> { item };
                         }
-                    }
-                    index++;
-                }
-            }
-        }
-
-        public static IEnumerable<List<T>> CombinationsWithRepeat<T>(this IEnumerable<T> source)
-            => source.CombinationsWithRepeat(source.Count());
-
-        // -------------------------
-        // Variations (k-permutations, order matters, no repetition)
-        // -------------------------
-        public static IEnumerable<List<T>> Variations<T>(this IEnumerable<T> source, int length)
-        {
-            if (length < 0) throw new ArgumentException("Length cannot be negative.");
-
-            if (length == 0)
-            {
-                yield return new List<T>();
-            }
-            else
-            {
-                int index = 0;
-                foreach (var item in source)
-                {
-                    if (length == 1)
-                    {
-                        yield return new List<T> { item };
-                    }
-                    else
-                    {
-                        foreach (var result in source.Where((_, i) => i != index).Variations(length - 1))
+                        else
                         {
-                            yield return [item, .. result];
+                            foreach (var result in source.Skip(index + 1).Combinations(length - 1))
+                            {
+                                yield return [item, .. result];
+                            }
                         }
-                    }
-                    index++;
-                }
-            }
-        }
-
-        public static IEnumerable<List<T>> Variations<T>(this IEnumerable<T> source)
-            => source.Variations(source.Count());
-
-        // -------------------------
-        // Variations with repetition (order matters, repetition allowed)
-        // -------------------------
-        public static IEnumerable<List<T>> VariationsWithRepeat<T>(this IEnumerable<T> source, int length)
-        {
-            if (length < 0) throw new ArgumentException("Length cannot be negative.");
-
-            if (length == 0)
-            {
-                yield return new List<T>();
-            }
-            else
-            {
-                foreach (var item in source)
-                {
-                    if (length == 1)
-                    {
-                        yield return new List<T> { item };
-                    }
-                    else
-                    {
-                        foreach (var result in source.VariationsWithRepeat(length - 1))
-                        {
-                            yield return [item, .. result];
-                        }
+                        index++;
                     }
                 }
             }
+
+            public IEnumerable<List<T>> Combinations()
+                => source.Combinations(source.Count());
+
+            // -------------------------
+            // Combinations with repetition (order doesn't matter, repetition allowed)
+            // -------------------------
+            public IEnumerable<List<T>> CombinationsWithRepeat(int length)
+            {
+                if (length < 0) throw new ArgumentException("Length cannot be negative.");
+
+                if (length == 0)
+                {
+                    yield return new List<T>();
+                }
+                else
+                {
+                    int index = 0;
+                    foreach (var item in source)
+                    {
+                        if (length == 1)
+                        {
+                            yield return new List<T> { item };
+                        }
+                        else
+                        {
+                            foreach (var result in source.Skip(index).CombinationsWithRepeat(length - 1))
+                            {
+                                yield return [item, .. result];
+                            }
+                        }
+                        index++;
+                    }
+                }
+            }
+
+            public IEnumerable<List<T>> CombinationsWithRepeat()
+                => source.CombinationsWithRepeat(source.Count());
+
+            // -------------------------
+            // Variations (k-permutations, order matters, no repetition)
+            // -------------------------
+            public IEnumerable<List<T>> Variations(int length)
+            {
+                if (length < 0) throw new ArgumentException("Length cannot be negative.");
+
+                if (length == 0)
+                {
+                    yield return new List<T>();
+                }
+                else
+                {
+                    int index = 0;
+                    foreach (var item in source)
+                    {
+                        if (length == 1)
+                        {
+                            yield return new List<T> { item };
+                        }
+                        else
+                        {
+                            foreach (var result in source.Where((_, i) => i != index).Variations(length - 1))
+                            {
+                                yield return [item, .. result];
+                            }
+                        }
+                        index++;
+                    }
+                }
+            }
+
+            public IEnumerable<List<T>> Variations()
+                => source.Variations(source.Count());
+
+            // -------------------------
+            // Variations with repetition (order matters, repetition allowed)
+            // -------------------------
+            public IEnumerable<List<T>> VariationsWithRepeat(int length)
+            {
+                if (length < 0) throw new ArgumentException("Length cannot be negative.");
+
+                if (length == 0)
+                {
+                    yield return new List<T>();
+                }
+                else
+                {
+                    foreach (var item in source)
+                    {
+                        if (length == 1)
+                        {
+                            yield return new List<T> { item };
+                        }
+                        else
+                        {
+                            foreach (var result in source.VariationsWithRepeat(length - 1))
+                            {
+                                yield return [item, .. result];
+                            }
+                        }
+                    }
+                }
+            }
+
+            public IEnumerable<List<T>> VariationsWithRepeat()
+                => source.VariationsWithRepeat(source.Count());
+
+            // -------------------------
+            // Permutations (alias: full-length variations)
+            // -------------------------
+            public IEnumerable<List<T>> Permutations()
+                => source.Variations(source.Count());
         }
-
-        public static IEnumerable<List<T>> VariationsWithRepeat<T>(this IEnumerable<T> source)
-            => source.VariationsWithRepeat(source.Count());
-
-        // -------------------------
-        // Permutations (alias: full-length variations)
-        // -------------------------
-        public static IEnumerable<List<T>> Permutations<T>(this IEnumerable<T> source)
-            => source.Variations(source.Count());
     }
 }

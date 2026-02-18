@@ -2,24 +2,31 @@
 
 public static class DecimalEx
 {
-    public static IEnumerable<decimal> GetDigits(this decimal source, decimal numBase = 10)
+    extension(decimal source)
     {
-        int sourceInt = (int)source;
-        while (sourceInt > 0)
+        public IEnumerable<decimal> GetDigits(decimal numBase = 10)
         {
-            yield return source % numBase;
-            sourceInt /= (int) numBase;
+            int sourceInt = (int)source;
+            while (sourceInt > 0)
+            {
+                yield return source % numBase;
+                sourceInt /= (int)numBase;
+            }
         }
     }
+    
+    extension(IEnumerable<int> digits)
+    {
+        public decimal FromDigits(int numBase = 10)
+        {
+            decimal value = 0;
+            foreach (var digit in digits.Reverse())
+            {
+                value = value * numBase + digit;
+            }
 
-    public static decimal FromDigits(IEnumerable<int> digits, int numBase = 10)
-    {
-        decimal value = 0;
-        foreach (var digit in digits.Reverse())
-        {
-            value = value * numBase + digit;
+            return value;
         }
-        
-        return value;
     }
+    
 }

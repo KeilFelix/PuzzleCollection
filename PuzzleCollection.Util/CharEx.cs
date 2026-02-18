@@ -2,13 +2,16 @@
 
 public static class CharEx
 {
-    public static int AlphabeticalPosition(this char character)
+    extension(char character)
     {
-        character = char.ToUpper(character);
-        if (character < 'A' || character > 'Z')
-            throw new ArgumentOutOfRangeException("Character must be a letter from A to Z.");
+        public int AlphabeticalPosition()
+        {
+            character = char.ToUpper(character);
+            if (character < 'A' || character > 'Z')
+                throw new ArgumentOutOfRangeException("Character must be a letter from A to Z.");
 
-        return character - 'A' + 1;
-
+            return character - 'A' + 1;
+        }
     }
+        
 }

@@ -2,11 +2,15 @@
 
 public static class StackEx
 {
-    public static IEnumerable<TSource> Pop<TSource>(this Stack<TSource> stack, int count)
+    extension<T>(Stack<T> stack)
     {
-        for (int i = 0; i < count; i++)
+        public IEnumerable<T> Pop(int count)
         {
-            yield return stack.Pop();
+            for (int i = 0; i < count; i++)
+            {
+                yield return stack.Pop();
+            }
         }
     }
+        
 }
