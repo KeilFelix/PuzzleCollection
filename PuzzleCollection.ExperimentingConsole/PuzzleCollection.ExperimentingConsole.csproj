@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LanguageExt.Core" Version="4.4.9" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PuzzleCollection.Util\PuzzleCollection.Util.csproj" />
   </ItemGroup>
 
