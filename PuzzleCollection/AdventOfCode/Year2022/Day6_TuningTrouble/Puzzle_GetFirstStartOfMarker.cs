@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.AdventOfCode.Year2022.Day6_TuningTrouble;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.AdventOfCode.Year2022.Day6_TuningTrouble;
 
 public abstract class Puzzle_GetFirstStartOfMarker : IPuzzle
 {

@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util.Grids;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util.Grids;
 
 namespace PuzzleCollection.AdventOfCode.Year2022.Day9_RopeBridge;
 
@@ -10,7 +13,7 @@ public static class Input
 
     private static Move MoveFromLine(string line)
     {
-        var split = line.Split(Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries);
+        var split = line.Split(System.Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries);
 
         return new Move(DirectionFromString(split[0]), int.Parse(split[1]));
     }

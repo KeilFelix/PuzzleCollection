@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
@@ -6,7 +9,7 @@ public class Problem44_PentagonNumbers : IPuzzle
 {
     public string GetSolution()
     {
-            
+
         var pentagonNumbers = NumberSequences.PentagonalNumbers().Take(10000).ToList();
         for (int i = 0; i < pentagonNumbers.Count; i++)
         {

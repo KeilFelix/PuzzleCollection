@@ -1,4 +1,5 @@
-using static System.Net.Mime.MediaTypeNames;
+// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
 
 namespace PuzzleCollection.Test.GenericPuzzles;
 

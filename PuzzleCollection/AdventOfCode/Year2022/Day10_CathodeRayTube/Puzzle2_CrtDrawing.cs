@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reactive;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PuzzleCollection.AdventOfCode.Year2022.Day10_CathodeRayTube
 {
@@ -21,7 +17,8 @@ namespace PuzzleCollection.AdventOfCode.Year2022.Day10_CathodeRayTube
             var monitor = new StringBuilder();
 
             var lastRegisterX = 1;
-            instructions.ForEach(instruction => {
+            instructions.ForEach(instruction =>
+            {
                 foreach (var process in processor.Execute(instruction))
                 {
                     var pixelPosition = ((process.CpuCycle - 1) % 40) + 1;

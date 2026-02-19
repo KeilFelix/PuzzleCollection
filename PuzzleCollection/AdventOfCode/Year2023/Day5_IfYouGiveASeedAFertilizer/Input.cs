@@ -1,6 +1,7 @@
-﻿using PuzzleCollection.AdventOfCode.Year2022.Day9_RopeBridge;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
 using PuzzleCollection.Util;
-using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace PuzzleCollection.AdventOfCode.Year2023.Day5_IfYouGiveASeedAFertilizer;
@@ -15,7 +16,7 @@ public static class Input
     {
         var almanacSections = almanacText.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToList();
 
-        var rawSeedList = almanacSections.First().Split(Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).Skip(1).Select(long.Parse).ToList();
+        var rawSeedList = almanacSections.First().Split(System.Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).Skip(1).Select(long.Parse).ToList();
         List<Range> seedNumbers;
         if (seedRanges)
         {
@@ -30,7 +31,7 @@ public static class Input
         else
         {
             seedNumbers = rawSeedList.Select(seedNumber => new Range(seedNumber, seedNumber)).ToList();
-        } 
+        }
 
         var maps = almanacSections.Skip(1).Select(ParseMap).ToList();
 
@@ -45,7 +46,7 @@ public static class Input
 
             var mapRanges = mapLines.Skip(1).Select(line =>
             {
-                var mapRangeParts = line.Split(Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToList();
+                var mapRangeParts = line.Split(System.Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToList();
                 var destinationRangeStart = long.Parse(mapRangeParts[0]);
                 var sourceRangeStart = long.Parse(mapRangeParts[1]);
                 var range = int.Parse(mapRangeParts[2]);
@@ -54,7 +55,7 @@ public static class Input
 
             return new AlmanacMap(sourceCategory, destinationCategory, mapRanges.AsReadOnly());
         }
-        
+
         return new Almanac(seedNumbers.AsReadOnly(), maps.AsReadOnly());
     }
 }

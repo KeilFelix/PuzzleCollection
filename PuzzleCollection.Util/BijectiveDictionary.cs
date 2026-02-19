@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using System.Collections;
 
 namespace PuzzleCollection.Util;
 

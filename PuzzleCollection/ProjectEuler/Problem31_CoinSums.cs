@@ -1,4 +1,5 @@
-﻿using PuzzleCollection.AdventOfCode.Year2022.Day8_TreetopTreeHouse;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
 
 namespace PuzzleCollection.ProjectEuler;
 

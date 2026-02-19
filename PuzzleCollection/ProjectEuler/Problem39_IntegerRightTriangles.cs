@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.ProjectEuler;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.ProjectEuler;
 
 public class Problem39_IntegerRightTriangles : IPuzzle
 {

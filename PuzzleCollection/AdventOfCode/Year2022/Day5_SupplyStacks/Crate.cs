@@ -1,3 +1,6 @@
-﻿namespace PuzzleCollection.AdventOfCode.Year2022.Day5_SupplyStacks;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.AdventOfCode.Year2022.Day5_SupplyStacks;
 
 public record Crate(char Identifier);

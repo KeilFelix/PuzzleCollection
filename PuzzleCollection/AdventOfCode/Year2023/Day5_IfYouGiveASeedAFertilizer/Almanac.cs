@@ -1,4 +1,5 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
 
 namespace PuzzleCollection.AdventOfCode.Year2023.Day5_IfYouGiveASeedAFertilizer;
 
@@ -8,7 +9,7 @@ public record Almanac(IReadOnlyCollection<Range> SeedRanges, IReadOnlyCollection
     {
         var categoryMap = Maps.Single(m => m.SourceCategory == category);
         var mappedRanges = ranges.SelectMany(n => categoryMap.MapRange(n)).ToList().AsReadOnly();
-        return (mappedRanges,  categoryMap.DestinationCategory);
+        return (mappedRanges, categoryMap.DestinationCategory);
     }
 }
 
@@ -30,7 +31,7 @@ public record AlmanacMap(string SourceCategory, string DestinationCategory, IRea
                 if (mapped.HasValue)
                 {
                     yield return mapped.Value;
-                    
+
                 }
 
                 foreach (var unmappedRange in unmapped)
@@ -54,7 +55,7 @@ public record RangeMap(Range Source, Range Destination)
     {
         var (unmappableRanges, mappableRange, _) = Range.Intersect(toMap, Source);
 
-        
+
         Range? mappedRange = mappableRange.HasValue
             ? new Range(mappableRange.Value.Start + Delta, mappableRange.Value.End + Delta)
             : null;
@@ -66,7 +67,7 @@ public readonly record struct Range(long Start, long End)
 {
     public long Length => End - Start + 1;
 
-    
+
     public bool IsEmpty() => Length <= 0;
 
     public static (IEnumerable<Range> aRemainders, Range? intersection, IEnumerable<Range> bRemainders) Intersect(Range a, Range b)
@@ -78,7 +79,7 @@ public readonly record struct Range(long Start, long End)
         {
             return ([a], null, [b]);
         }
-        
+
         var intersection = new Range(intersectionStart, intersectionEnd);
 
         IEnumerable<Range> aRemainders()
@@ -108,7 +109,7 @@ public readonly record struct Range(long Start, long End)
                 yield return new Range(intersection.End + 1, b.End);
             }
         }
-        
+
         return (aRemainders(), intersection, bRemainders());
     }
 };

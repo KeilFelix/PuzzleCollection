@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.Util;
 
 public static class IntEx
 {
@@ -15,7 +18,7 @@ public static class IntEx
     {
         while (source > 0)
         {
-            yield return (int) (source % numBase);
+            yield return (int)(source % numBase);
             source /= numBase;
         }
     }
@@ -27,11 +30,11 @@ public static class IntEx
         {
             value = value * numBase + digit;
         }
-        
+
         return value;
     }
 
-    
+
 
     public static bool IsPandigital(this long source)
     {

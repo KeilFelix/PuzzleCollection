@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
@@ -7,10 +10,10 @@ public class Problem40_ChampernownesConstant : IPuzzle
     public string GetSolution()
     {
         var champornownesConstant = NumberSequences.ChampernownesConstantSeries().Memoize();
-        
+
         var neededDigitIndexes = new List<int> { 1, 10, 100, 1000, 10000, 100000, 1000000 };
 
-        var neededDigits = neededDigitIndexes.Select(d => champornownesConstant.ElementAt(d-1)).Memoize();
+        var neededDigits = neededDigitIndexes.Select(d => champornownesConstant.ElementAt(d - 1)).Memoize();
 
         return $"The product of the Champernowne's Constant digits is {neededDigits.Product()}";
     }

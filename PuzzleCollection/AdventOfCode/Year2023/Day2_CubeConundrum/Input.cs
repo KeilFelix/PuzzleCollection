@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.AdventOfCode.Year2023.Day2_CubeConundrum;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.AdventOfCode.Year2023.Day2_CubeConundrum;
 
 public class Input
 {
@@ -20,7 +23,7 @@ public class Input
 
     public static CubeSet ParseCubeSet(string cubeSetPhrase)
     {
-        var cubeGroups = cubeSetPhrase.Split(new string[] {", " }, StringSplitOptions.RemoveEmptyEntries)
+        var cubeGroups = cubeSetPhrase.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
             .Select(ParseCubeGroup)
             .ToList();
 

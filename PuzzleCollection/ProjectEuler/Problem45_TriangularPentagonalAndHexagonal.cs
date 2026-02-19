@@ -1,5 +1,7 @@
-﻿using PuzzleCollection.Util;
-using System;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
@@ -7,7 +9,7 @@ public class Problem45_TriangularPentagonalAndHexagonal : IPuzzle
 {
     public string GetSolution()
     {
-            
+
         var triangleNumbers = NumberSequences.TriangleNumbers().Skip(285).Memoize();
         var pentagonalNumbers = NumberSequences.PentagonalNumbers().Skip(165).Memoize();
         var hexagonalNumbers = NumberSequences.HexagonalNumbers().Skip(143).Memoize();

@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.Util;
 
 public static class StackEx
 {
@@ -12,5 +15,5 @@ public static class StackEx
             }
         }
     }
-        
+
 }

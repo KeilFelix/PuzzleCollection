@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
@@ -81,7 +84,7 @@ public class Problem43_SubStringDivisibility : IPuzzle
                 }
             }
         }
-        
+
 
         return $"The sum of all is {substringDivisiblePandigitals.Sum()}";
     }

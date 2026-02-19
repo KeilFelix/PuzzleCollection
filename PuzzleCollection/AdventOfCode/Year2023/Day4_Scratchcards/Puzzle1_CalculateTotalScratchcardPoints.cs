@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.AdventOfCode.Year2023.Day4_Scratchcards;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.AdventOfCode.Year2023.Day4_Scratchcards;
 
 public class Puzzle1_CalculateTotalScratchcardPoints : IPuzzle
 {

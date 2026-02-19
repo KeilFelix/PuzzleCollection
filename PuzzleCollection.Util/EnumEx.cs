@@ -1,4 +1,7 @@
-﻿using System.Numerics;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using System.Numerics;
 
 namespace PuzzleCollection.Util;
 
@@ -20,5 +23,5 @@ public static class EnumEx
             return BitOperations.Log2(v);
         }
     }
-    
+
 }

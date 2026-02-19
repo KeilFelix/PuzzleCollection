@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.AdventOfCode.Year2022.Day4_CampCleanup;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.AdventOfCode.Year2022.Day4_CampCleanup;
 
 public class Puzzle2_CalculateCountOfOverlappingAssignments : IPuzzle
 {

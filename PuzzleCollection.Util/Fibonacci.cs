@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Numerics;
 
@@ -14,7 +17,7 @@ public class Fibonacci : IEnumerable<BigInteger>
 
     private readonly List<BigInteger> _numbers = new();
     private readonly Dictionary<BigInteger, int> _lookup = new();
-    
+
     private void Memoize(BigInteger value)
     {
         _numbers.Add(value);
@@ -27,10 +30,10 @@ public class Fibonacci : IEnumerable<BigInteger>
     public BigInteger this[int n]
     {
         get
-        { 
-            if(n >= _numbers.Count)
+        {
+            if (n >= _numbers.Count)
             {
-                Generate(_numbers[_numbers.Count-2], _numbers[_numbers.Count - 1], n - _numbers.Count + 1)
+                Generate(_numbers[_numbers.Count - 2], _numbers[_numbers.Count - 1], n - _numbers.Count + 1)
                     .ForEach(value => Memoize(value));
             }
             return _numbers[n];
@@ -55,7 +58,7 @@ public class Fibonacci : IEnumerable<BigInteger>
     private IEnumerable<BigInteger> Iterator()
     {
         int n = 0;
-        while(true)
+        while (true)
         {
             yield return this[n];
             n++;

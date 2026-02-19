@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.CodeWars.RailFenceCipher_EncodingAndDecoding;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.CodeWars.RailFenceCipher_EncodingAndDecoding;
 
 namespace PuzzleCollection.Test.CodeWars.RailFenceCipher_EncodingAndDecoding;
 

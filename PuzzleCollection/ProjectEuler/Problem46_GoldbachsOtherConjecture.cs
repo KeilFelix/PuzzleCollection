@@ -1,5 +1,7 @@
-﻿using PuzzleCollection.Util;
-using System;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
@@ -18,7 +20,7 @@ public class Problem46_GoldbachsOtherConjecture : IPuzzle
         var lastGoldback = goldbachSeries.Current;
         var lastPrime = primes.Current;
 
-        while(odds.Current == lastPrime || odds.Current == lastGoldback)
+        while (odds.Current == lastPrime || odds.Current == lastGoldback)
         {
             odds.MoveNext();
 
@@ -54,7 +56,7 @@ public class Problem46_GoldbachsOtherConjecture : IPuzzle
         long lastYielded = 0;
         while (true)
         {
-            while(goldbackPartialEnumerators.Any(e => e.Current > primer.Current))
+            while (goldbackPartialEnumerators.Any(e => e.Current > primer.Current))
             {
                 var partialSeries = GoldbachPartialSeries(primer.Current).GetEnumerator();
                 partialSeries.MoveNext();
@@ -64,7 +66,7 @@ public class Problem46_GoldbachsOtherConjecture : IPuzzle
 
             var smallestEnumerator = goldbackPartialEnumerators.MinBy(e => e.Current);
 
-            if(smallestEnumerator!.Current != lastYielded)
+            if (smallestEnumerator!.Current != lastYielded)
             {
                 yield return lastYielded = smallestEnumerator.Current;
             }

@@ -1,0 +1,6 @@
+[*.cs]
+file_header_template = Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)\nLicensed under the MIT License.
+# Ensure unused usings are flagged as errors/warnings (this forces Cleanup to see them)
+dotnet_diagnostic.IDE0005.severity = error
+# Ensure formatting is enforced
+dotnet_diagnostic.IDE0055.severity = error

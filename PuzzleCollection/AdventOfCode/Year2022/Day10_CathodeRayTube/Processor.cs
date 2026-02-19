@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
 using System.Reactive.Subjects;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PuzzleCollection.AdventOfCode.Year2022.Day10_CathodeRayTube
 {
@@ -25,7 +23,7 @@ namespace PuzzleCollection.AdventOfCode.Year2022.Day10_CathodeRayTube
                 yield return (CpuCycle.Value, RegisterX.Value);
             }
 
-            
+
         }
     }
 }

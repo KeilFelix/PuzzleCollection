@@ -1,10 +1,13 @@
-﻿using System.Numerics;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using System.Numerics;
 
 namespace PuzzleCollection.Util;
 
 public class FibIdentity
 {
-    public FibIdentity(Func<int, int , int, BigInteger> leftHand, Func<int, int, int, BigInteger> rightHand)
+    public FibIdentity(Func<int, int, int, BigInteger> leftHand, Func<int, int, int, BigInteger> rightHand)
     {
         LeftHand = leftHand;
         RightHand = rightHand;
@@ -31,15 +34,15 @@ public class FibIdentity
 
     /// Collected identities
 
-    public static FibIdentity FibonacciLucasIdentity = new FibIdentity((a, b, n) => Fibonacci.Sequence(a, b)[2*n], (a, b, n) => Fibonacci.Sequence(a, b)[n] * Fibonacci.Sequence(a + 2, b)[n]);
+    public static FibIdentity FibonacciLucasIdentity = new FibIdentity((a, b, n) => Fibonacci.Sequence(a, b)[2 * n], (a, b, n) => Fibonacci.Sequence(a, b)[n] * Fibonacci.Sequence(a + 2, b)[n]);
 }
 
 
-public static class  IdentityParts
+public static class IdentityParts
 {
     public static Func<int, int, int, BigInteger> FibonacciLucasLeft = (a, b, n) => Fibonacci.Sequence(a, b)[2 * n];
     public static Func<int, int, int, BigInteger> FibonacciLucasRight = (a, b, n) => Fibonacci.Sequence(a, b)[n] * Fibonacci.Sequence(a + 2, b)[n];
-    
+
 }
 
 public static class Constants

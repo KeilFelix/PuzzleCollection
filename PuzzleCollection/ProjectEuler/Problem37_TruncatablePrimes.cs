@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
@@ -28,17 +31,17 @@ public class Problem37_TruncatablePrimes : IPuzzle
             {
                 rightDigits.Add(digits[i]);
                 leftDigits.Insert(0, digits[digits.Count - 1 - i]);
-                if(!primeCache.Contains(IntEx.FromDigits(leftDigits)) ||
+                if (!primeCache.Contains(IntEx.FromDigits(leftDigits)) ||
                  !primeCache.Contains(IntEx.FromDigits(rightDigits)))
                 {
                     return false;
                 }
             }
-            
+
             return true;
         }
 
     }
 
-    
+
 }

@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
@@ -6,7 +9,7 @@ public class Problem36_DoubleBasePalindromes : IPuzzle
 {
     private bool IsDoubleBasePalindrome(int value)
     {
-        if(value % 2 == 0 || value % 10 == 0)
+        if (value % 2 == 0 || value % 10 == 0)
         {
             return false;
         }

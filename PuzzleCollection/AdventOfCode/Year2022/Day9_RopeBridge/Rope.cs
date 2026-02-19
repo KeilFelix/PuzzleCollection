@@ -1,9 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
 using PuzzleCollection.Util;
 using PuzzleCollection.Util.Grids;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace PuzzleCollection.AdventOfCode.Year2022.Day9_RopeBridge;
 

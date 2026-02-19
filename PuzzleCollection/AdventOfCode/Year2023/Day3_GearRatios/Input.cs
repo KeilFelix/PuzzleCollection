@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.AdventOfCode.Year2023.Day3_GearRatios;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.AdventOfCode.Year2023.Day3_GearRatios;
 
 public class Input
 {

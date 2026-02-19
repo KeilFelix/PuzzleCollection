@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using System.Text;
 
 namespace PuzzleCollection.AdventOfCode.Year2022.Day3_RucksackReorganization;
 

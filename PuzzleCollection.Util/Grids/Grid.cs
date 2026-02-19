@@ -1,7 +1,9 @@
-﻿using System.Reactive.Linq;
-using System.Reactive.Subjects;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
 using DynamicData;
-using PuzzleCollection.Util;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 
 namespace PuzzleCollection.Util.Grids;
 

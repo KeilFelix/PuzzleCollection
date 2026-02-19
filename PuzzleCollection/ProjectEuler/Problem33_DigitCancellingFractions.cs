@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
@@ -37,8 +40,8 @@ public class Problem33_DigitCancellingFractions : IPuzzle
             for (int divideBy = denominator; divideBy > 0; divideBy--)
             {
                 bool divisible = numerator % divideBy == 0 && denominator % divideBy == 0;
-                
-                if(divisible)
+
+                if (divisible)
                 {
                     numerator /= divideBy;
                     denominator /= divideBy;
@@ -61,7 +64,7 @@ public class Problem33_DigitCancellingFractions : IPuzzle
 
         var product = firstFourDigitCancellingFractions
             .Select(fraction => fraction.Simplify())
-            .Aggregate(new Fraction(1,1), (curFraction, fraction) => new Fraction(curFraction.Numerator * fraction.Numerator, curFraction.Denominator * fraction.Denominator).Simplify());
+            .Aggregate(new Fraction(1, 1), (curFraction, fraction) => new Fraction(curFraction.Numerator * fraction.Numerator, curFraction.Denominator * fraction.Denominator).Simplify());
 
         return $"The denominator is {product.Denominator}.";
     }

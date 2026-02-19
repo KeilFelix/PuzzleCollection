@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.AdventOfCode.Year2023.Day1_Trebuchet;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.AdventOfCode.Year2023.Day1_Trebuchet;
 
 public static class Input
 {

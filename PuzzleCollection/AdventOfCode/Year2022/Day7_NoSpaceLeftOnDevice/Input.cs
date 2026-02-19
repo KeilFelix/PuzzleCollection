@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 using System.Text.RegularExpressions;
 
 namespace PuzzleCollection.AdventOfCode.Year2022.Day7_NoSpaceLeftOnDevice;
@@ -17,7 +20,7 @@ public static class Input
         if (command == "$ ls")
         {
             var lsSplittedOutput = output
-                .Select(str => str.Split(Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries));
+                .Select(str => str.Split(System.Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries));
 
             var subdirectories = lsSplittedOutput
                 .Where(split => split[0] == "dir")

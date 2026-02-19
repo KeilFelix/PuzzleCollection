@@ -1,5 +1,8 @@
-﻿using System.Data;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
 using PuzzleCollection.Util.Grids;
+using System.Data;
 
 namespace PuzzleCollection.AdventOfCode.Year2022.Day9_RopeBridge;
 

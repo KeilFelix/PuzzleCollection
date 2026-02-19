@@ -1,4 +1,7 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Scripting;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 using System.Numerics;
 

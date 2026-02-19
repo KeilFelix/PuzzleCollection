@@ -1,4 +1,7 @@
-﻿using System.Collections.Concurrent;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using System.Collections.Concurrent;
 using System.Numerics;
 
 namespace PuzzleCollection.Util;
@@ -70,7 +73,7 @@ public class FibonacciAlgs
         // Uses identity for even n: F(2n) = F(n) * L(n)
         if (n % 2 == 0)
         {
-            Console.WriteLine($"F({n/2})");
+            Console.WriteLine($"F({n / 2})");
             Console.WriteLine($"L({n / 2})");
             return fibonacciMemoConcurrent[n] = MemoizedFibonacciOverLucas(n / 2) * MemoizedRippleLucas(n / 2);
         }
@@ -111,7 +114,7 @@ public class FibonacciAlgs
         // Uses identity for odd n: L(2n) = L(n+1)^2 - L(n)^2 + 4(-1)^n
         Console.WriteLine($"L({n2p1})");
         Console.WriteLine($"L({n2})");
-        return lucasMemoConcurrent[n] = BigInteger.Pow(MemoizedRippleLucas(n2p1), 2) - BigInteger.Pow(MemoizedRippleLucas(n2), 2) + (p*2);
+        return lucasMemoConcurrent[n] = BigInteger.Pow(MemoizedRippleLucas(n2p1), 2) - BigInteger.Pow(MemoizedRippleLucas(n2), 2) + (p * 2);
 
         // Uses identity for odd n: L(m + n) = L(m+1)F(n) + L(m)F(n-1) where m+1 is chosen to be the next fitting power of 2
         //var nextM = powerOf2s.First(p => p <= (n / 2));
@@ -239,7 +242,7 @@ public class FibonacciAlgs
         //return lucasMemoConcurrent[n] = resultsOdd[0] * resultsOdd[1] + resultsOdd[2] * resultsOdd[3];
     }
 
-    private static ConcurrentDictionary<BigInteger, BigInteger> lucasMemoConcurrent = new ConcurrentDictionary<BigInteger, BigInteger> ();
+    private static ConcurrentDictionary<BigInteger, BigInteger> lucasMemoConcurrent = new ConcurrentDictionary<BigInteger, BigInteger>();
     private static ConcurrentDictionary<BigInteger, BigInteger> fibonacciMemoConcurrent = new ConcurrentDictionary<BigInteger, BigInteger>();
 
 }

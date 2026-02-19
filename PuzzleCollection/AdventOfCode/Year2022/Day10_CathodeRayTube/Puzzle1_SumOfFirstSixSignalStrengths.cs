@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PuzzleCollection.AdventOfCode.Year2022.Day10_CathodeRayTube
 {
@@ -25,7 +22,7 @@ namespace PuzzleCollection.AdventOfCode.Year2022.Day10_CathodeRayTube
                 .ToList()
                 .Subscribe(registerValuesByCycle =>
                 {
-                    var signalStrengths  = registerValuesByCycle.GroupBy(t => t.cycle).Select(grp => grp.First()).Select(t => t.registerX * t.cycle);
+                    var signalStrengths = registerValuesByCycle.GroupBy(t => t.cycle).Select(grp => grp.First()).Select(t => t.registerX * t.cycle);
                     sumOfFirstSixSignalStrengths = signalStrengths.Sum();
                 });
 

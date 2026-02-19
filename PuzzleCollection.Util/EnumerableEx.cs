@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using System.Collections.ObjectModel;
 
 namespace PuzzleCollection.Util;
 
@@ -127,7 +130,7 @@ public static class EnumerableEx
                 .SplitAfter(t => t.Index % count == count - 1)
                 .Select(split => split.Select(t => t.Entry));
 
-        
+
 
         public bool IsPalindrome()
         {

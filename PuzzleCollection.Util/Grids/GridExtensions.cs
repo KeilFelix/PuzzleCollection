@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.Util.Grids;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.Util.Grids;
 
 public static class GridExtensions
 {

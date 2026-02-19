@@ -1,5 +1,7 @@
-﻿using PuzzleCollection.Util;
-using System;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 using System.Collections.ObjectModel;
 
 namespace PuzzleCollection.ProjectEuler;
@@ -23,9 +25,9 @@ public class Problem47_DistinctPrimesFactors : IPuzzle
                 .GroupBy(n => n)
                 .Select(group => group.Key.Pow(group.Count()))).ToList();
 
-        if(primeFactorsMultiplied.Any(pf => pf.Count() != 4))
+        if (primeFactorsMultiplied.Any(pf => pf.Count() != 4))
         {
-            return false ;
+            return false;
         }
 
         var allPrimeFactors = primeFactorsMultiplied.SelectMany(primeFactors => primeFactors).ToList();

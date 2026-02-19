@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 namespace PuzzleCollection.ProjectEuler;
 
 public class Problem32_PandigitalProducts : IPuzzle
@@ -9,7 +12,7 @@ public class Problem32_PandigitalProducts : IPuzzle
 
         public bool IsPandigital()
         {
-            var digits = new HashSet<int>();
+            var digits = new System.Collections.Generic.HashSet<int>();
             foreach (var digit in Multiplicand.ToDigits().Concat(Multiplier.ToDigits()).Concat(Value.ToDigits()))
             {
                 if (digit == 0 || !digits.Add(digit))

@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.AdventOfCode.Year2023.Day4_Scratchcards;
 
@@ -31,12 +34,12 @@ public record ScratchcardWithWonCopies : Scratchcard
 
 
     //List of Scratchcards should be refactored to hold this cache, this design is broken if Scratchcards are created from different sources
-    private static Dictionary<int,ScratchcardWithWonCopies> dirtyScratchCardCache = new();
+    private static Dictionary<int, ScratchcardWithWonCopies> dirtyScratchCardCache = new();
 
     public static ScratchcardWithWonCopies CreateFromScratchcards(Scratchcard scratchcard, List<Scratchcard> scratchcards)
     {
         var indexOfScratchcard = scratchcards.IndexOf(scratchcard);
-        if(dirtyScratchCardCache.TryGetValue(indexOfScratchcard, out var cachedCard))
+        if (dirtyScratchCardCache.TryGetValue(indexOfScratchcard, out var cachedCard))
         {
             return cachedCard;
         }

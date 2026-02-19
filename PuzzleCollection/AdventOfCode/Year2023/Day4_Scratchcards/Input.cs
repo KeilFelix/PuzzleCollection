@@ -1,4 +1,7 @@
-﻿namespace PuzzleCollection.AdventOfCode.Year2023.Day4_Scratchcards;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+namespace PuzzleCollection.AdventOfCode.Year2023.Day4_Scratchcards;
 
 public static class Input
 {
@@ -11,19 +14,19 @@ public static class Input
     {
         var cardLineSplitted = cardLine.Split(new string[] { "Card ", ": ", " | " }, StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToList();
 
-        if(cardLineSplitted.Count != 3)
+        if (cardLineSplitted.Count != 3)
         {
             throw new ArgumentException(nameof(cardLine));
         }
 
-        if(!int.TryParse(cardLineSplitted[0], out var cardNumber))
+        if (!int.TryParse(cardLineSplitted[0], out var cardNumber))
         {
             throw new ArgumentException(nameof(cardLine));
         }
 
-        var winningNumbers = cardLineSplitted[1].Split(Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).Select(int.Parse).ToList().AsReadOnly(); //Tryparse and proper exception
-        var scratchNumbers = cardLineSplitted[2].Split(Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).Select(int.Parse).ToList().AsReadOnly();
-        
+        var winningNumbers = cardLineSplitted[1].Split(System.Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).Select(int.Parse).ToList().AsReadOnly(); //Tryparse and proper exception
+        var scratchNumbers = cardLineSplitted[2].Split(System.Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).Select(int.Parse).ToList().AsReadOnly();
+
         return new Scratchcard(cardNumber, winningNumbers, scratchNumbers);
     }
 }

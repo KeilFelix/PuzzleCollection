@@ -1,5 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
 using PuzzleCollection.Util;
+using System.Text.RegularExpressions;
 
 namespace PuzzleCollection.AdventOfCode.Year2022.Day5_SupplyStacks;
 

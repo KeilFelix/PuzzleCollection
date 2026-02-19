@@ -1,6 +1,7 @@
-﻿using PuzzleCollection.Util;
-using System;
-using System.Collections.ObjectModel;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
@@ -30,7 +31,7 @@ public class Problem49_PrimePermutations : IPuzzle
             .SelectMany(permutations => permutations.Combinations(3));
 
         var validTriplet = primeTriplets
-            .Where(primeTriplet => primeTriplet.Count > 2 
+            .Where(primeTriplet => primeTriplet.Count > 2
                 && primeTriplet
                     .PairWithPrevious()
                     .Skip(1)

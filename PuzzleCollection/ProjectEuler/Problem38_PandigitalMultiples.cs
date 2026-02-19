@@ -1,4 +1,7 @@
-﻿using PuzzleCollection.Util;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
@@ -17,16 +20,16 @@ public class Problem38_PandigitalMultiples : IPuzzle
         int GetLargestPandigitalMultipleUnderThreshold(int value, int maxDigits = 9)
         {
             var digits = Enumerable.Empty<int>();
-            for (int i = 1;  ; i++)
+            for (int i = 1; ; i++)
             {
                 var nextDigits = (value * i).ToDigits().Reverse().Memoize();
-                if(nextDigits.Count() + digits.Count() > maxDigits)
+                if (nextDigits.Count() + digits.Count() > maxDigits)
                 {
                     break;
                 }
                 digits = digits.Concat(nextDigits);
             }
-            
+
             digits = digits.Where(d => d != 0).Distinct(); // only 1-9 unique
             return (int)IntEx.FromDigits(digits.Reverse());
         }

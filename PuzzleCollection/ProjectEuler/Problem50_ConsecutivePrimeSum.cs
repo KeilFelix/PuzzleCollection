@@ -1,7 +1,7 @@
-﻿using PuzzleCollection.Util;
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Licensed under the MIT License.
+
+using PuzzleCollection.Util;
 
 namespace PuzzleCollection.ProjectEuler;
 
