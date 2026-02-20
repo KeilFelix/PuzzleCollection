@@ -1,6 +1,6 @@
 # PuzzleCollection
 
-## Status [![Build & Test](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet.yml/badge.svg)](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet.yml)
+## Status [![Build](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet.yml/badge.svg)](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet.yml) [![Tests](https://img.shields.io/github/checks-status/KeilFelix/PuzzleCollection/main?checkName=.NET%20Tests&label=tests)](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet.yml)
 
 ## About
 
