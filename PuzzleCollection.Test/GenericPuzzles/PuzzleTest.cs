@@ -34,7 +34,7 @@ public class PuzzleTest
         {typeof(AdventOfCode.Year2022.Day9_RopeBridge.Puzzle1_GetCountOfTailVisitedPositions),  "The number of places that the tail visited is 6271." },
         {typeof(AdventOfCode.Year2022.Day9_RopeBridge.Puzzle2_GetCountOfTailVisitedPositions),  "The number of places that the tail visited is 2458." },
         {typeof(AdventOfCode.Year2022.Day10_CathodeRayTube.Puzzle1_SumOfFirstSixSignalStrengths),  "Sum of the six signal strengths: 14420" },
-        {typeof(AdventOfCode.Year2022.Day10_CathodeRayTube.Puzzle2_CrtDrawing), "###...##..#....###..###..####..##..#..#.\r\n#..#.#..#.#....#..#.#..#....#.#..#.#..#.\r\n#..#.#....#....#..#.###....#..#..#.#..#.\r\n###..#.##.#....###..#..#..#...####.#..#.\r\n#.#..#..#.#....#.#..#..#.#....#..#.#..#.\r\n#..#..###.####.#..#.###..####.#..#..##..\r\n" },
+        {typeof(AdventOfCode.Year2022.Day10_CathodeRayTube.Puzzle2_CrtDrawing), $"###...##..#....###..###..####..##..#..#.{Environment.NewLine}#..#.#..#.#....#..#.#..#....#.#..#.#..#.{Environment.NewLine}#..#.#....#....#..#.###....#..#..#.#..#.{Environment.NewLine}###..#.##.#....###..#..#..#...####.#..#.{Environment.NewLine}#.#..#..#.#....#.#..#..#.#....#..#.#..#.{Environment.NewLine}#..#..###.####.#..#.###..####.#..#..##..{Environment.NewLine}" },
         {typeof(AdventOfCode.Year2022.Day11_MonkeyInTheMiddle.Puzzle1_CalculateMonkeyBusiness), "The monkey business is 58786." },
         {typeof(AdventOfCode.Year2022.Day11_MonkeyInTheMiddle.Puzzle2_CalculateMonkeyBusiness), "The monkey business is 14952185856." },
         {typeof(AdventOfCode.Year2022.Day12_HillClimbingAlgorithm.Puzzle1_GetShortestPathFromStart), "The shortest path to the end is 350." },

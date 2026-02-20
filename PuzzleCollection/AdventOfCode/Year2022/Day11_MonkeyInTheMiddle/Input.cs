@@ -1,4 +1,4 @@
-﻿// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
+// Copyright ©️ 2026 - Felix Keil (Awesomni.Codes)
 // Licensed under the MIT License.
 
 using Microsoft.CodeAnalysis.CSharp.Scripting;
@@ -13,13 +13,13 @@ public static class Input
     {
         var monkeyLookup = new Dictionary<int, Monkey>();
         return File.ReadAllText("AdventOfCode/Year2022/Day11_MonkeyInTheMiddle/Monkeys.txt")
-                .Split(["\r\n\r\n"], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Split([$"{Environment.NewLine}{Environment.NewLine}"], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                 .Select(section => GetMonkey(section, worryLevelAdaption, monkeyLookup)).ToList();
     }
 
     private static Monkey GetMonkey(string monkeySection, Func<BigInteger, BigInteger>? worryLevelAdaption, Dictionary<int, Monkey> monkeyLookup)
     {
-        var monkeyLines = monkeySection.Split("\r\n", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        var monkeyLines = monkeySection.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
         var monkeyId = int.Parse(monkeyLines[0].Split(["Monkey ", ":"], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0]);
         var startingItems = monkeyLines[1]

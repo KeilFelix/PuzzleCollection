@@ -41,7 +41,7 @@ public class Puzzle2_TreeWithHighestScenicScore : IPuzzle
                 Console.Write($"{visibleNeighbor.Objects.Single().Value.Height} ");
             }
 
-            Console.Write("\r\n");
+            Console.Write(Environment.NewLine);
         }
     }
 }

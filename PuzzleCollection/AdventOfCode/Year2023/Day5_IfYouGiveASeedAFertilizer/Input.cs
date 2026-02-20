@@ -14,7 +14,7 @@ public static class Input
 
     public static Almanac ParseAlmanac(string almanacText, bool seedRanges)
     {
-        var almanacSections = almanacText.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToList();
+        var almanacSections = almanacText.Split([$"{Environment.NewLine}{Environment.NewLine}"], StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToList();
 
         var rawSeedList = almanacSections.First().Split(System.Array.Empty<char>(), StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).Skip(1).Select(long.Parse).ToList();
         List<Range> seedNumbers;
@@ -38,7 +38,7 @@ public static class Input
         AlmanacMap ParseMap(string mapText)
         {
             Regex mapHeaderRegex = new(@"(?<SourceCategory>[a-z]+)-to-(?<DestinationCategory>[a-z]+)\smap:", RegexOptions.Compiled);
-            var mapLines = mapText.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToList();
+            var mapLines = mapText.Split([Environment.NewLine], StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToList();
             var mapHeader = mapLines.First();
             var mapHeaderMatch = mapHeaderRegex.Match(mapHeader);
             var sourceCategory = mapHeaderMatch.Groups.GetValueOrDefault("SourceCategory")?.Value ?? throw new InvalidOperationException();

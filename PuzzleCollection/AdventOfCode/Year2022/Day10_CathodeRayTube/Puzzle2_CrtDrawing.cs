@@ -32,7 +32,7 @@ namespace PuzzleCollection.AdventOfCode.Year2022.Day10_CathodeRayTube
                     }
                     if (pixelPosition == 40)
                     {
-                        monitor.Append("\r\n");
+                        monitor.Append(Environment.NewLine);
                     }
                     lastRegisterX = process.RegisterX;
                 }
