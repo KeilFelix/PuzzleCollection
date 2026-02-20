@@ -1,4 +1,4 @@
-name: Build & Test
+name: Build
 
 on:
   push:
@@ -12,8 +12,6 @@ concurrency:
 
 permissions:
   contents: read
-  checks: write
-  pull-requests: write
 
 jobs:
   build:
@@ -34,22 +32,10 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal --results-directory TestResults --logger "trx;LogFileName=test-results.trx"
-
-    - name: Publish test results
-      if: always()
-      uses: dorny/test-reporter@v1
-      with:
-        name: .NET Tests
-        path: TestResults/**/*.trx
-        reporter: dotnet-trx
-        fail-on-error: true
-
-    - name: Upload test result artifacts
-      if: always()
+    - name: Upload build binaries
       uses: actions/upload-artifact@v4
       with:
-        name: test-results-trx
-        path: TestResults/**/*.trx
-        if-no-files-found: ignore
+        name: build-binaries
+        path: "**/bin/Release/**"
+        if-no-files-found: error
+        retention-days: 3

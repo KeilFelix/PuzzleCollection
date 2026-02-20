@@ -1,5 +1,5 @@
 # PuzzleCollection
-## Status [![Build & Test](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet.yml/badge.svg)](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet.yml)
+## Status [![Build](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet.yml/badge.svg)](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet.yml) [![Test](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet-test.yml/badge.svg)](https://github.com/KeilFelix/PuzzleCollection/actions/workflows/dotnet-test.yml)
 
 ## About
 This puzzle collection showcases solutions with minimal yet easily understandable declarative code and a basic object-oriented design.
