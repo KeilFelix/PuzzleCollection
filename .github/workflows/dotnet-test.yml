@@ -61,7 +61,7 @@ jobs:
       shell: pwsh
       run: |
         $assemblies = Get-Content -Path "test-assemblies.txt"
-        dotnet vstest $assemblies --logger:"trx;LogFileName=test-results.trx" --ResultsDirectory "TestResults"
+        dotnet vstest $assemblies /Logger:"trx;LogFileName=test-results.trx" /ResultsDirectory:"TestResults"
 
     - name: Publish test results
       if: always()
